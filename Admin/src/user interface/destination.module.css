@@ -1,0 +1,11 @@
+.sub_heading{
+    padding-top: 34px;
+    font-family: ui-monospace;
+    letter-spacing: inherit;
+    font-weight: bolder;
+    font-style: italic;
+}
+.delhi_pic{
+    height: 180px;
+    padding-inline: 5px;
+}
