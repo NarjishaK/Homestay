@@ -1,0 +1,24 @@
+.adminpanel{
+    height: 60px;
+    background-color: antiquewhite;
+    text-align: center;
+    padding-top: 15px;
+}
+.adminpanels{
+    height: 60px;
+    background-color: rgb(242 220 190);
+    text-align: center;
+    padding-top: 15px;
+}
+.adminpanel_text{
+    font-size: 23px;
+    font-family: serif;
+    text-transform: uppercase;
+}
+.statusRed {
+    color: red;
+  }
+  
+  .statusGreen {
+    color: green;
+  }
