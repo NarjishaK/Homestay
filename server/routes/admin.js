@@ -24,8 +24,8 @@ router.get("/adminlist",Authentication, Admincontroller.adminlist);
 module.exports = router;
 
 //Homestay//
-router.post("/adminpanel", upload.single("image"),Admincontroller.adminpanel)
+router.post("/adminpanel", upload.single("image"),Admincontroller.adminpanel);
 router.get ("/adminpanellist",Admincontroller.adminpanellist);
-router.delete("/deleted/:_id",Admincontroller.deleted)
-// router.get("/adminpaneledit/:_id",Admincontroller.adminpaneledit)
-router.get("/adminpaneledit/:id",Admincontroller.adminpaneledit)
+router.delete("/deleted/:_id",Admincontroller.deleted);
+router.get("/adminpaneledit/:id",Admincontroller.adminpaneledit);
+router.put("/updated/:id", upload.single("image"),Admincontroller.updated)

@@ -15,6 +15,7 @@ function Admins() {
   const [details, setDetails] = useState("");
   const [image, setImage] = useState("");
   const [status, setStatus] = useState("");
+  const [imagePreview, setImagePreview] = useState("")
   const handleCreate = async (e) => {
     e.preventDefault();
     let formData = new FormData();
@@ -39,10 +40,19 @@ function Admins() {
       console.log(err);
     }
   };
+  // const handleImage = (e) => {
+  //   const selectedImage = e.target.files[0];
+  //   setImage(selectedImage);
+  //   setImagePreview(URL.createObjectURL(image))
+  // };
   const handleImage = (e) => {
     const selectedImage = e.target.files[0];
-    setImage(selectedImage);
-  };
+    if (selectedImage) {
+        setImage(selectedImage);
+        const imagePreviewUrl = URL.createObjectURL(selectedImage);
+        setImagePreview(imagePreviewUrl);
+    }
+};
 
   return (
     <div className="ltn__login-area pb-110">
@@ -77,6 +87,9 @@ function Admins() {
                   onChange={handleImage}
                   accept="image/*"
                 />
+                {imagePreview &&(
+                  <img src={imagePreview} alt="Preview" style={{ width: '100%', height: 'auto' }}/>
+                )}
                 <br />
                 <br />
                 <input
@@ -102,8 +115,8 @@ function Admins() {
                     onChange={(e) => setStatus(e.target.value)}
                   >
                     <option>Status</option>
-                    <option>Availble</option>
-                    <option>Not Availble</option>
+                    <option>Available</option>
+                    <option>Not Available</option>
                   </select>
                 </div>
                 <br />
@@ -121,7 +134,7 @@ function Admins() {
               </form>
               <div className="by-agree text-center">
                 <div className="go-to-btn mt-20 go-top">
-                  <Link to="/quarter#/adminpanellist">GO BACK</Link>
+                  <Link to="/adminpanellist">GO BACK</Link>
                 </div>
               </div>
             </div>

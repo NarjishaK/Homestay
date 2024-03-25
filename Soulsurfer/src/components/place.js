@@ -3,6 +3,13 @@ import { useTheme } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  Button,
+} from "@material-ui/core";
+import {
   Avatar,
   AppBar,
   Toolbar,
@@ -24,11 +31,14 @@ import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import axios from "axios";
+import styles from "../CSS/adminpanel.module.css";
 
 function AdminPanel() {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down("sm"));
   const [homestay, setHomestay] = useState([]);
+  const [openDialog, setOpenDialog] = useState(false);
+  const [selectedHomestay, setSelectedHomestay] = useState(null);
   const history = useHistory();
 
   useEffect(() => {
@@ -56,17 +66,23 @@ function AdminPanel() {
   };
 
   const handleEdit = (id) => {
-    // Use history.push to navigate
     history.push(`/adminpaneledit/${id}`);
+  };
+
+  const handleShow = (id) => {
+    const selectedPlace = homestay.find((place) => place._id === id);
+    setSelectedHomestay(selectedPlace);
+    setOpenDialog(true);
   };
 
   return (
     <div className="admin-panel">
-      <AppBar position="static">
-        <Toolbar>
-          <Typography variant="h6">Admin Panel</Typography>
-        </Toolbar>
-      </AppBar>
+      <div className={styles.adminpanel}>
+        <h5 className={styles.adminpanel_text}>Admin Panel</h5>
+      </div>
+      <div className={styles.adminpanels}>
+        <a href="/quarter#/adminpanelcreate">ADD NEW PLACE</a>
+      </div>
 
       {matches ? (
         <List>
@@ -81,7 +97,15 @@ function AdminPanel() {
               <ListItemText
                 primary={place.place}
                 secondary={
-                  `${place.details}, ${place.status} ` + ` ${place.description}`
+                  <span
+                    className={
+                      place.status === "Not Available"
+                        ? styles.statusRed
+                        : styles.statusGreen
+                    }
+                  >
+                    {` ${place.status} `}
+                  </span>
                 }
               />
               <ListItemSecondaryAction>
@@ -95,7 +119,7 @@ function AdminPanel() {
                 <IconButton onClick={() => handleDelete(place._id)}>
                   <DeleteIcon />
                 </IconButton>
-                <IconButton>
+                <IconButton onClick={() => handleShow(place._id)}>
                   <VisibilityIcon />
                 </IconButton>
               </ListItemSecondaryAction>
@@ -126,7 +150,18 @@ function AdminPanel() {
                     <TableCell>{place.place}</TableCell>
                   </TableCell>
                   <TableCell>{place.details}</TableCell>
-                  <TableCell>{place.status}</TableCell>
+                  <TableCell>
+                    {" "}
+                    <span
+                      className={
+                        place.status === "Not Available"
+                          ? styles.statusRed
+                          : styles.statusGreen
+                      }
+                    >
+                      {place.status}
+                    </span>
+                  </TableCell>
                   <TableCell>{place.description}</TableCell>
                   <TableCell style={{ textAlign: "center" }}>
                     <IconButton onClick={() => handleEdit(place._id)}>
@@ -139,9 +174,6 @@ function AdminPanel() {
                     >
                       <DeleteIcon />
                     </IconButton>
-                    <IconButton>
-                      <VisibilityIcon />
-                    </IconButton>
                   </TableCell>
                 </TableRow>
               ))}
@@ -149,6 +181,29 @@ function AdminPanel() {
           </Table>
         </Paper>
       )}
+      <Dialog
+        open={openDialog}
+        onClose={() => setOpenDialog(false)}
+        aria-labelledby="form-dialog-title"
+      >
+        <DialogTitle id="form-dialog-title">Homestay Details</DialogTitle>
+        <DialogContent>
+          {selectedHomestay && (
+            <div>
+              <p>Place: {selectedHomestay.place}</p>
+              <p>Details: {selectedHomestay.details}</p>
+              <p>Status: {selectedHomestay.status}</p>
+              <p>Description: {selectedHomestay.description}</p>
+              <img
+                src={`http://localhost:7000/upload/${selectedHomestay.image}`}
+              />
+            </div>
+          )}
+        </DialogContent>
+        <Button onClick={() => setOpenDialog(false)} color="primary">
+          Close
+        </Button>
+      </Dialog>
     </div>
   );
 }

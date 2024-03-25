@@ -101,8 +101,6 @@ exports.adminpanel = asyncHandler(async (req, res) => {
   }
 });
 
-//adminpanel list /place details list //
-
 exports.adminpanellist = asyncHandler(async(req,res)=>{
   try{
     const place = await placeList.find()
@@ -131,8 +129,6 @@ exports.deleted= asyncHandler(async(req,res)=>{
 
 exports.adminpaneledit = asyncHandler(async(req, res) => {
   const {id} =req.params
-    console.log(id ,"oooooooooooooooooooooooooooooooooooooooooooooooooo");
-
   try {
     const place = await placeList.findById(id);
     if (!place) {
@@ -146,18 +142,25 @@ exports.adminpaneledit = asyncHandler(async(req, res) => {
   }
 });
 
-// exports.adminpaneledit = asyncHandler(async(req, res) => {
-//   const {id} = req.params;
-//   console.log(id, "oooooooooooooooooooooooooooooooooooooooooooooooooo");
-
-//   try {
-//     const place = await placeList.findById(id);
-//     if (!place) {
-//       return res.status(404).json({ err: "It is not found" });
-//     }
-//     res.json(place);
-//   } catch (err) {
-//     console.log(err);
-//     return res.status(500).json({ err: "An error occurred in edit" });
-//   }
-// });
+exports.updated = asyncHandler(async(req,res)=>{
+  const {id} =req.params;
+  const { place, details, description, status } = req.body;
+  try{
+  const places =await placeList.findById(id)
+  if(!place){
+    return res.status(404).json({err: "it is not found"})
+  }
+  places.place=place;
+  places.details=details;
+  places.description =description;
+  places. status=status;
+  if (req.file){
+    places.image =req.file.filename;
+  }
+  const updatedplaces = await places.save()
+  res.json(updatedplaces)
+  }catch(err){
+  console.log(err);
+  return res.status(500).json({err:" an error occured in updated"})
+  }
+})

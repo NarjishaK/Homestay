@@ -18,10 +18,9 @@ function Admins1() {
   const [imagePreviewUrl, setImagePreviewUrl] = useState("");
   const [status, setStatus] = useState("");
   const { id } = useParams();
-  console.log("hiiiiiiiiiiiiii",description);
   useEffect(() => {
     const fetchPlaces = async () => {
-      try {  
+      try {
         const response = await axios.get(
           `http://localhost:7000/admin/adminpaneledit/${id}`
         );
@@ -33,43 +32,54 @@ function Admins1() {
         setImage(places.image);
         setImagePreviewUrl(`http://localhost:7000/upload/${places.image}`);
       } catch (err) {
-        console.log(err,"hloooooooooooooooooooooooooooooooooooo");
+        console.log(err);
       }
     };
     fetchPlaces();
   }, [id]);
-  console.log(id,"hhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
 
-
-  // const handleImage = (e) => {
-  //   const selectedImage = e.target.files[0];
-  //   setImage(selectedImage);
-  // };
   const handleImage = (e) => {
-    e.preventDefault();
-    let reader = new FileReader();
-    let file = e.target.files[0];
-
-    reader.onloadend = () => {
-      setImage(file);
-      setImagePreviewUrl(reader.result);
+    const selectedImage = e.target.files[0];
+    if (selectedImage) {
+      setImage(selectedImage);
+      const imagePreviewUrl = URL.createObjectURL(selectedImage); // Use selectedImage directly
+      setImagePreviewUrl(imagePreviewUrl);
     }
-
-    if (file) {
-      reader.readAsDataURL(file);
+  };
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+    let formData = new FormData();
+    formData.append("place", place);
+    formData.append("status", status);
+    formData.append("description", description);
+    formData.append("details", details);
+    formData.append("image", image);
+    try {
+      const response = await axios.put(
+        `http://localhost:7000/admin/updated/${id}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      console.log("Update response:", response);
+      window.location.href = "/quarter#/adminpanellist";
+    } catch (err) {
+      console.log(err);
     }
   };
 
   return (
     <div className="ltn__login-area pb-110">
-      <PageHeader headertitle="Admin Panel Create" subheader="Create" />
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
             <div className="section-title-area text-center">
+              <br/>
               <h1 className="section-title">
-                Create <br />
-                Homestays
+                Edit  Homestay Details
               </h1>
             </div>
           </div>
@@ -93,8 +103,12 @@ function Admins1() {
                   onChange={handleImage}
                   accept="image/*"
                 />
-                 {imagePreviewUrl && (
-                  <img src={imagePreviewUrl} alt="Preview" style={{ width: '100%', height: 'auto' }} />
+                {imagePreviewUrl && (
+                  <img
+                    src={imagePreviewUrl}
+                    alt="Preview"
+                    style={{ width: "100%", height: "auto" }}
+                  />
                 )}
                 <br />
                 <br />
@@ -132,9 +146,9 @@ function Admins1() {
                     className="theme-btn-1 btn reverse-color btn-block"
                     type="submit"
                     style={{ width: "100%" }}
-                    // onClick={handleCreate}
+                    onClick={handleUpdate}
                   >
-                    CREATE
+                    UPDATE
                   </button>
                 </div>
               </form>
