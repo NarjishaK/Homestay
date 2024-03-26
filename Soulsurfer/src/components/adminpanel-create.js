@@ -12,17 +12,21 @@ function Admins() {
 
   const [place, setPlace] = useState("");
   const [description, setDescription] = useState("");
-  const [details, setDetails] = useState("");
+  const [price, setPrice] = useState("");
   const [image, setImage] = useState("");
   const [status, setStatus] = useState("");
+  const [room, setRoom] = useState("");
+  const [location, setLocation] = useState("");
   const [imagePreview, setImagePreview] = useState("")
   const handleCreate = async (e) => {
     e.preventDefault();
     let formData = new FormData();
     formData.append("place", place);
     formData.append("status", status);
+    formData.append("room", room);
+    formData.append("location", location);
     formData.append("description", description);
-    formData.append("details", details);
+    formData.append("price", price);
     formData.append("image", image);
     try {
       const response = await axios.post(
@@ -72,12 +76,38 @@ function Admins() {
           <div className="col-lg-6 offset-lg-3">
             <div className="account-login-inner">
               <form action="#" className="ltn__form-box contact-form-box">
-                <input
+                {/* <input
                   type="text"
                   id="place"
                   placeholder="Place Name"
                   value={place}
                   onChange={(e) => setPlace(e.target.value)}
+                /> */}
+                 <div style={{ width: "100%" }}>
+                  <select
+                    style={{
+                      width: "100%",
+                      height: "55px",
+                      borderColor: "#b7d1d0",
+                    }}
+                    value={place}
+                    onChange={(e) => setPlace(e.target.value)}
+                  >
+                    <option>Place</option>
+                    <option>New Delhi</option>
+                    <option>Tamilnadu</option>
+                    <option>Goa</option>
+                    <option>Manali</option>
+                    <option>Kerala</option>
+                  </select>
+                </div>
+                <br />
+                <input
+                  type="text"
+                  id="place"
+                  placeholder="Location"
+                  value={location}
+                  onChange={(e) => setLocation(e.target.value)}
                 />
 
                 <input
@@ -94,9 +124,9 @@ function Admins() {
                 <br />
                 <input
                   type="text"
-                  placeholder="Details about place"
-                  value={details}
-                  onChange={(e) => setDetails(e.target.value)}
+                  placeholder="price"
+                  value={price}
+                  onChange={(e) => setPrice(e.target.value)}
                 />
                 <input
                   type="text"
@@ -120,6 +150,23 @@ function Admins() {
                   </select>
                 </div>
                 <br />
+                <div style={{ width: "100%" }}>
+                  <select
+                    style={{
+                      width: "100%",
+                      height: "55px",
+                      borderColor: "#b7d1d0",
+                    }}
+                    value={room}
+                    onChange={(e) => setRoom(e.target.value)}
+                  >
+                    <option>Rooms</option>
+                    <option>1BHK</option>
+                    <option>2BHK</option>
+                    <option>3BHK</option>
+                    <option>4BHK</option>
+                  </select>
+                </div>
                 <br />
                 <div className="btn-wrapper">
                   <button
