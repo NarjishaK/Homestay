@@ -13,10 +13,12 @@ function Admins1() {
 
   const [place, setPlace] = useState("");
   const [description, setDescription] = useState("");
-  const [details, setDetails] = useState("");
+  const [price, setPrice] = useState("");
   const [image, setImage] = useState("");
   const [imagePreviewUrl, setImagePreviewUrl] = useState("");
   const [status, setStatus] = useState("");
+  const [location, setLocation] = useState("");
+  const [room, setRoom] = useState("");
   const { id } = useParams();
   useEffect(() => {
     const fetchPlaces = async () => {
@@ -26,9 +28,11 @@ function Admins1() {
         );
         const places = response.data;
         setDescription(places.description);
-        setDetails(places.details);
+        setPrice(places.price);
         setPlace(places.place);
         setStatus(places.status);
+        setRoom(places.room);
+        setLocation(places.location);
         setImage(places.image);
         setImagePreviewUrl(`http://localhost:7000/upload/${places.image}`);
       } catch (err) {
@@ -51,8 +55,10 @@ function Admins1() {
     let formData = new FormData();
     formData.append("place", place);
     formData.append("status", status);
+    formData.append("room", room);
+    formData.append("location", location);
     formData.append("description", description);
-    formData.append("details", details);
+    formData.append("price", price);
     formData.append("image", image);
     try {
       const response = await axios.put(
@@ -88,12 +94,31 @@ function Admins1() {
           <div className="col-lg-6 offset-lg-3">
             <div className="account-login-inner">
               <form action="#" className="ltn__form-box contact-form-box">
+              <div style={{ width: "100%" }}>
+                  <select
+                    style={{
+                      width: "100%",
+                      height: "55px",
+                      borderColor: "#b7d1d0",
+                    }}
+                    value={place}
+                    onChange={(e) => setPlace(e.target.value)}
+                  >
+                    <option>Place</option>
+                    <option>New Delhi</option>
+                    <option>Tamilnadu</option>
+                    <option>Goa</option>
+                    <option>Manali</option>
+                    <option>Kerala</option>
+                  </select>
+                </div>
+                <br />
                 <input
                   type="text"
                   id="place"
                   placeholder="Place Name"
-                  value={place}
-                  onChange={(e) => setPlace(e.target.value)}
+                  value={location}
+                  onChange={(e) => setLocation(e.target.value)}
                 />
 
                 <input
@@ -113,10 +138,10 @@ function Admins1() {
                 <br />
                 <br />
                 <input
-                  type="text"
-                  placeholder="Details about place"
-                  value={details}
-                  onChange={(e) => setDetails(e.target.value)}
+                  type="number"
+                  placeholder="Price"
+                  value={price}
+                  onChange={(e) => setPrice(e.target.value)}
                 />
                 <input
                   type="text"
@@ -137,6 +162,25 @@ function Admins1() {
                     <option>Status</option>
                     <option>Availble</option>
                     <option>Not Availble</option>
+                  </select>
+                </div>
+                <br />
+                <br />
+                <div style={{ width: "100%" }}>
+                  <select
+                    style={{
+                      width: "100%",
+                      height: "55px",
+                      borderColor: "#b7d1d0",
+                    }}
+                    value={room}
+                    onChange={(e) => setRoom(e.target.value)}
+                  >
+                    <option>Rooms</option>
+                    <option>1BHK</option>
+                    <option>2BHK</option>
+                    <option>3BHK</option>
+                    <option>4BHK</option>
                   </select>
                 </div>
                 <br />

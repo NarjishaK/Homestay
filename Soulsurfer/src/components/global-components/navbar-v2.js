@@ -81,6 +81,7 @@ class NavbarV2 extends Component {
 								<ul>
 								<li ><Link to="/">Home</Link></li>
 								<li ><Link to="/portfolio">All</Link></li>
+								<li><Link to="/shop-grid">Homestay</Link></li>
 								{/* <li className="menu-icon"><Link to="/about">About</Link>
 									<ul>
 										<li><Link to="/about">About</Link></li>

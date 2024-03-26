@@ -132,9 +132,10 @@ function AdminPanel() {
             <TableHead>
               <TableRow>
                 <TableCell>Place</TableCell>
-                <TableCell>Details</TableCell>
+                <TableCell>Price</TableCell>
                 <TableCell>Status</TableCell>
                 <TableCell>Description</TableCell>
+                <TableCell>Rooms</TableCell>
                 <TableCell style={{ textAlign: "center" }}>Action</TableCell>
               </TableRow>
             </TableHead>
@@ -142,14 +143,16 @@ function AdminPanel() {
               {homestay.map((place) => (
                 <TableRow key={place.id}>
                   <TableCell>
+                    <a href={place.location}>
                     <img
                       alt={place.place}
                       src={`http://localhost:7000/upload/${place.image}`}
                       style={{ width: "150px", height: "150px" }}
                     />
+                    </a>
                     <TableCell>{place.place}</TableCell>
                   </TableCell>
-                  <TableCell>{place.details}</TableCell>
+                  <TableCell>{place.price}</TableCell>
                   <TableCell>
                     {" "}
                     <span
@@ -163,6 +166,7 @@ function AdminPanel() {
                     </span>
                   </TableCell>
                   <TableCell>{place.description}</TableCell>
+                  <TableCell>{place.room}</TableCell>
                   <TableCell style={{ textAlign: "center" }}>
                     <IconButton onClick={() => handleEdit(place._id)}>
                       <EditIcon />
@@ -191,12 +195,14 @@ function AdminPanel() {
           {selectedHomestay && (
             <div>
               <p>Place: {selectedHomestay.place}</p>
-              <p>Details: {selectedHomestay.details}</p>
+              <p>Price: {selectedHomestay.price}</p>
               <p>Status: {selectedHomestay.status}</p>
               <p>Description: {selectedHomestay.description}</p>
+              <p>Rooms: {selectedHomestay.room}</p>
               <img
                 src={`http://localhost:7000/upload/${selectedHomestay.image}`}
               />
+               <a href= {selectedHomestay.location}> Click Here For Location</a>
             </div>
           )}
         </DialogContent>

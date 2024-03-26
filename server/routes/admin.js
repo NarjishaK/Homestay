@@ -14,14 +14,8 @@ const storage = multer.diskStorage({
 });
 var upload = multer({ storage: storage });
 
-router.post(
-  "/createadmin",
-  upload.single("image"),
-  Admincontroller.createadmin
-);
-router.post("/signin", Admincontroller.signin);
-router.get("/adminlist",Authentication, Admincontroller.adminlist);
-module.exports = router;
+
+// router.get("/adminlist",Authentication, Admincontroller.adminlist);
 
 //Homestay//
 router.post("/adminpanel", upload.single("image"),Admincontroller.adminpanel);
@@ -29,3 +23,6 @@ router.get ("/adminpanellist",Admincontroller.adminpanellist);
 router.delete("/deleted/:_id",Admincontroller.deleted);
 router.get("/adminpaneledit/:id",Admincontroller.adminpaneledit);
 router.put("/updated/:id", upload.single("image"),Admincontroller.updated)
+
+
+module.exports = router;

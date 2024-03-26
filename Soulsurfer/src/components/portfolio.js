@@ -11,7 +11,7 @@ import Footer from './global-components/footer';
 const Portfolio_V1 = () => {
     return <div>
         <Navbar />
-        <PageHeader headertitle="Our Portfolio" subheader="Portfolio" />
+        <PageHeader headertitle="ALL HOMESTAYS" subheader="ALL" />
         <PortfolioV1 />
         <CallToActonV2 />
         <BlogSlider sectionClass="pt-120" />
