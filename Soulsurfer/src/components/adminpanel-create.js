@@ -44,11 +44,7 @@ function Admins() {
       console.log(err);
     }
   };
-  // const handleImage = (e) => {
-  //   const selectedImage = e.target.files[0];
-  //   setImage(selectedImage);
-  //   setImagePreview(URL.createObjectURL(image))
-  // };
+  
   const handleImage = (e) => {
     const selectedImage = e.target.files[0];
     if (selectedImage) {

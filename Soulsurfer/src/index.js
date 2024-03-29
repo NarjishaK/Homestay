@@ -47,6 +47,9 @@ import History from "./components/history";
 import Place from "./components/place";
 import PlaceEdit from "./components/place-edit";
 import AdminPanelCreate from "./components/adminpanel-create";
+import Categorycreate from "./components/categorycreate";
+import CategoryList from "./components/categorylist";
+import Categoryedit from "./components/categoryedit";
 class Root extends Component {
   render() {
     return (
@@ -57,6 +60,9 @@ class Root extends Component {
             <Route path="/adminpanellist" component={Place} />
             <Route path="/adminpaneledit/:id" component={PlaceEdit} />
             <Route path="/adminpanelcreate" component={AdminPanelCreate} />
+            <Route path="/categorycreate" component={Categorycreate} />
+            <Route path="/categorylist" component={CategoryList} />
+            <Route path="/categoryedit/:id" component={Categoryedit} />
             <Route path="/about" component={About} />
             <Route path="/service" component={Service} />
             <Route path="/service-details" component={ServiceDetails} />

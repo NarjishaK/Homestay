@@ -1,10 +1,7 @@
-const AdminRegister = require("../modals/admin-model");
 const placeList = require("../modals/place-model");
-const Admin = require("../routes/admin");
+const categoryList = require ("../modals/category-model")
 const asyncHandler = require("express-async-handler");
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
-const { json } = require("body-parser");
+const CategoryList = require("../modals/category-model");
 
 
 //homestays//
@@ -96,5 +93,89 @@ exports.updated = asyncHandler(async(req,res)=>{
   }catch(err){
   console.log(err);
   return res.status(500).json({err:" an error occured in updated"})
+  }
+})
+
+//category //
+
+exports.createcategory =asyncHandler(async(req,res)=>{
+  const {name}= req.body;
+  const image = req.file.filename;
+  try{
+  const category = await CategoryList.create({
+    name:name,
+    image:image,
+  });
+  if(category){
+    res.send("success")
+  }else{
+    res.send("failed")
+  }
+  }catch(err){
+    console.log(err);
+    return res.status(404).json({err: "an error occured in category create"})
+  }
+});
+
+exports.categorylist =asyncHandler(async(req,res)=>{
+  try{
+    const category = await categoryList.find();
+    if(!category){
+      return res.status(404).json({err: "No category"})
+    }
+    res.json(category)
+  }catch(err){
+    console.log(err);
+    return res.status(500).json({err: "An error occured in cateogry listing"})
+  }
+});
+
+exports.categoryedit = asyncHandler(async(req,res)=>{
+  const {id}= req.params;
+  try{
+   const category = await categoryList.findById(id);
+   if(!category){
+    return res.status(404).json({err: "category not found"})
+   }
+   res.json(category)
+  }catch(err){
+    console.log(err);
+    return res.status(500).json({err: "an error occured in ccategory editing"})
+  }
+});
+
+exports.updatecategory= asyncHandler(async(req,res)=>{
+  const {name }= req.body;
+  const {id}= req.params;
+  try{
+   const category = await categoryList.findById(id);
+   if(!category){
+    return res.status(404).json({err: "category items not found"})
+   }
+   category.name=name;
+   if (req.file){
+    category.image =req.file.filename;
+  }
+   const updatedcategory = await category.save()
+   res.json(updatedcategory)
+  }catch(err){
+    console.log(err);
+    return res.status(500).json({err:" an error occured in update category"})
+  }
+
+});
+
+exports.deletecategory=asyncHandler(async(req,res)=>{
+  const {id}=req.params;
+  try{
+    const category = await categoryList.findById(id);
+    if(!category){
+      return res.status(404).json({err: "category is not available to delete"})
+    }
+    await category.deleteOne()
+    res.json({message :"deleted  successfull"})
+  }catch(err){
+    console.log(err);
+    return res.status(500).json({err: "an error occured in category delete"})
   }
 })

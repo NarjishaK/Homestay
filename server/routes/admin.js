@@ -15,7 +15,6 @@ const storage = multer.diskStorage({
 var upload = multer({ storage: storage });
 
 
-// router.get("/adminlist",Authentication, Admincontroller.adminlist);
 
 //Homestay//
 router.post("/adminpanel", upload.single("image"),Admincontroller.adminpanel);
@@ -23,6 +22,13 @@ router.get ("/adminpanellist",Admincontroller.adminpanellist);
 router.delete("/deleted/:_id",Admincontroller.deleted);
 router.get("/adminpaneledit/:id",Admincontroller.adminpaneledit);
 router.put("/updated/:id", upload.single("image"),Admincontroller.updated)
+
+//category//
+router.post("/createcategory",upload.single("image"),Admincontroller.createcategory)
+router.get("/categorylist",Admincontroller.categorylist)
+router.get("/categoryedit/:id",Admincontroller.categoryedit)
+router.put("/updatecategory/:id",upload.single("image"),Admincontroller.updatecategory)
+router.delete("/deletecategory/:id",Admincontroller.deletecategory)
 
 
 module.exports = router;
