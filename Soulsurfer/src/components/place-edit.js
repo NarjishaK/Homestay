@@ -46,7 +46,7 @@ function Admins1() {
     const selectedImage = e.target.files[0];
     if (selectedImage) {
       setImage(selectedImage);
-      const imagePreviewUrl = URL.createObjectURL(selectedImage); // Use selectedImage directly
+      const imagePreviewUrl = URL.createObjectURL(selectedImage); 
       setImagePreviewUrl(imagePreviewUrl);
     }
   };

@@ -57,13 +57,16 @@ function AdminPanel() {
   };
 
   const handleDelete = async (id) => {
+    const confirm = window.confirm("Are you sure you want to delete this")
+    if (confirm){
     try {
       await axios.delete(`http://localhost:7000/admin/deleted/${id}`);
-      setHomestay(homestay.filter((place) => place._id !== id));
+      fetchPlace()
     } catch (error) {
       console.error("There was an error deleting the place:", error);
     }
   };
+}
 
   const handleEdit = (id) => {
     history.push(`/adminpaneledit/${id}`);

@@ -22,3 +22,14 @@
   .statusGreen {
     color: green;
   }
+  .category{
+    background-color: #c2c267;
+    height: 65px;
+    padding-top: 20px;
+    text-align: center;
+  }
+  .icnbtn{
+    height: 36px;
+    padding-top: -26px;
+    background-color: #fff;
+  }
