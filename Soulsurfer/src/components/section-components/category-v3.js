@@ -34,7 +34,7 @@ class CategoryV3 extends Component {
 						<div className="ltn__banner-info">
 						<h3><Link to="/shop">  Tamilnadu</Link></h3>
 						<p> Great Deals Available</p>
-						<mark> Show More</mark>
+						<mark> Show More...</mark>
 						</div>
 					</div>
 					</div>
