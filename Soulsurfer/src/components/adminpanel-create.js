@@ -1,7 +1,7 @@
 import PageHeader from "./global-components/page-header";
 // import CallToActionV1 from './section-components/call-to-action-v1';
 // <CallToActionV1 />
-import React, { Component, useState } from "react";
+import React, { Component, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import parse from "html-react-parser";
 import axios from "axios";
@@ -17,7 +17,8 @@ function Admins() {
   const [status, setStatus] = useState("");
   const [room, setRoom] = useState("");
   const [location, setLocation] = useState("");
-  const [imagePreview, setImagePreview] = useState("")
+  const [imagePreview, setImagePreview] = useState("");
+  const [category, setCategory] = useState([]);
   const handleCreate = async (e) => {
     e.preventDefault();
     let formData = new FormData();
@@ -44,16 +45,32 @@ function Admins() {
       console.log(err);
     }
   };
-  
+
   const handleImage = (e) => {
     const selectedImage = e.target.files[0];
     if (selectedImage) {
-        setImage(selectedImage);
-        const imagePreviewUrl = URL.createObjectURL(selectedImage);
-        setImagePreview(imagePreviewUrl);
+      setImage(selectedImage);
+      const imagePreviewUrl = URL.createObjectURL(selectedImage);
+      setImagePreview(imagePreviewUrl);
     }
-};
+  };
 
+  //categorylist//
+
+  useEffect(() => {
+    fetchCategory();
+  }, []);
+
+  const fetchCategory = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:7000/admin/categorylist"
+      );
+      setCategory(response.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <div className="ltn__login-area pb-110">
       <PageHeader headertitle="Admin Panel Create" subheader="Create" />
@@ -72,29 +89,22 @@ function Admins() {
           <div className="col-lg-6 offset-lg-3">
             <div className="account-login-inner">
               <form action="#" className="ltn__form-box contact-form-box">
-                {/* <input
-                  type="text"
-                  id="place"
-                  placeholder="Place Name"
-                  value={place}
-                  onChange={(e) => setPlace(e.target.value)}
-                /> */}
-                 <div style={{ width: "100%" }}>
+                <div style={{ width: "100%" }}>
                   <select
                     style={{
                       width: "100%",
                       height: "55px",
                       borderColor: "#b7d1d0",
                     }}
-                    value={place}
-                    onChange={(e) => setPlace(e.target.value)}
+                    value={place} 
+                    onChange={(e) => setPlace(e.target.value)} 
                   >
-                    <option>Place</option>
-                    <option>New Delhi</option>
-                    <option>Tamilnadu</option>
-                    <option>Goa</option>
-                    <option>Manali</option>
-                    <option>Kerala</option>
+                    <option value="">Select Place</option>
+                    {category.map((cat, index) => (
+                      <option key={index} value={cat.name}>
+                        {cat.name}
+                      </option>
+                    ))}
                   </select>
                 </div>
                 <br />
@@ -113,8 +123,12 @@ function Admins() {
                   onChange={handleImage}
                   accept="image/*"
                 />
-                {imagePreview &&(
-                  <img src={imagePreview} alt="Preview" style={{ width: '100%', height: 'auto' }}/>
+                {imagePreview && (
+                  <img
+                    src={imagePreview}
+                    alt="Preview"
+                    style={{ width: "100%", height: "auto" }}
+                  />
                 )}
                 <br />
                 <br />
