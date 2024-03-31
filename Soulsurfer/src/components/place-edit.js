@@ -19,8 +19,10 @@ function Admins1() {
   const [status, setStatus] = useState("");
   const [location, setLocation] = useState("");
   const [room, setRoom] = useState("");
+  const [category ,setCategory] =useState([])
   const { id } = useParams();
   useEffect(() => {
+    fetchcategory()
     const fetchPlaces = async () => {
       try {
         const response = await axios.get(
@@ -77,6 +79,16 @@ function Admins1() {
     }
   };
 
+  const fetchcategory=async()=>{
+    try{
+      const response =await axios.get("http://localhost:7000/admin/categorylist")
+      setCategory(response.data)
+    }catch(err){
+      console.log(err);
+    }
+  }
+
+
   return (
     <div className="ltn__login-area pb-110">
       <div className="container">
@@ -104,12 +116,10 @@ function Admins1() {
                     value={place}
                     onChange={(e) => setPlace(e.target.value)}
                   >
-                    <option>Place</option>
-                    <option>New Delhi</option>
-                    <option>Tamilnadu</option>
-                    <option>Goa</option>
-                    <option>Manali</option>
-                    <option>Kerala</option>
+                    <option>Selec place</option>
+                    {category.map((categories,index)=>(
+                    <option key={index}>{categories.name}</option>
+                    ))}
                   </select>
                 </div>
                 <br />

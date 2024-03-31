@@ -7,6 +7,7 @@ import styles from "../shop-components/shop.module.css";
 function ShopGridV1() {
   let publicUrl = process.env.PUBLIC_URL + "/";
   const [homestay, setHomestay] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     fetchHomestay();
@@ -22,6 +23,21 @@ function ShopGridV1() {
         console.log(err);
       });
   };
+
+  // Step 2: Add onChange handler to update searchTerm
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  // Step 3: Filter homestay based on searchTerm before rendering
+  const filteredHomestay = searchTerm
+    ? homestay.filter(
+        (place) =>
+          place.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          place.place.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          place.room.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+    : homestay;
   return (
     <div>
       <div className="ltn__product-area ltn__product-gutter mb-100">
@@ -79,15 +95,16 @@ function ShopGridV1() {
                               type="text"
                               name="search"
                               placeholder="Search your keyword..."
+                              onChange={handleSearchChange}
                             />
                             <button type="submit">
                               <i className="fas fa-search" />
                             </button>
                           </form>
                         </div>
+                        {/* {filteredHomestay.map((place) => ())} */}
                       </div>
-                      {/* ltn__product-item */}
-                      {homestay.map((place) => (
+                      {filteredHomestay.map((place) => (
                         <div className="col-lg-4 col-sm-6 col-12">
                           <div className="ltn__product-item ltn__product-item-4 ltn__product-item-5 text-center---">
                             <div className="product-img">
@@ -97,18 +114,6 @@ function ShopGridV1() {
                                   alt="#"
                                 />
                               </Link>
-                              {/* <div className="real-estate-agent">
-                              <div className="agent-img">
-                                <Link to="/team-details">
-                                  <img
-                                    src={
-                                      publicUrl + "assets/img/blog/author.jpg"
-                                    }
-                                    alt="#"
-                                  />
-                                </Link>
-                              </div>
-                            </div> */}
                             </div>
                             <div className="product-info">
                               <div className="product-badge">
@@ -181,7 +186,7 @@ function ShopGridV1() {
                             <div className="product-info-bottom">
                               <div className="product-price">
                                 <span>
-                                  ${place.price}
+                                ₹{place.price}
                                   <label>/Day</label>
                                 </span>
                               </div>
@@ -189,10 +194,6 @@ function ShopGridV1() {
                           </div>
                         </div>
                       ))}
-
-                      {/* ltn__product-item */}
-
-                      {/*  */}
                     </div>
                   </div>
                 </div>

@@ -99,7 +99,7 @@ function CategoryList() {
                                   </li>
                                   <li>
                                     <span className="go-top">
-                                      <Link to="#" title="Product Details">
+                                      <Link to="/categorycreate" title="Product Details">
                                         <i className="flaticon-add" />
                                       </Link>
                                     </span>
