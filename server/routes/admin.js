@@ -17,11 +17,11 @@ var upload = multer({ storage: storage });
 
 
 //Homestay//
-router.post("/adminpanel", upload.single("image"),Admincontroller.adminpanel);
+router.post("/adminpanel", upload.array("image"),Admincontroller.adminpanel);
 router.get ("/adminpanellist",Admincontroller.adminpanellist);
 router.delete("/deleted/:_id",Admincontroller.deleted);
 router.get("/adminpaneledit/:id",Admincontroller.adminpaneledit);
-router.put("/updated/:id", upload.single("image"),Admincontroller.updated)
+router.put("/updated/:id", upload.array("image"),Admincontroller.updated)
 
 //category//
 router.post("/createcategory",upload.single("image"),Admincontroller.createcategory)
@@ -30,5 +30,7 @@ router.get("/categoryedit/:id",Admincontroller.categoryedit)
 router.put("/updatecategory/:id",upload.single("image"),Admincontroller.updatecategory)
 router.delete("/deletecategory/:id",Admincontroller.deletecategory)
 
+//get place details based on category
+router.get("/placedetails/:id",Admincontroller.placedetails)
 
 module.exports = router;

@@ -22,7 +22,7 @@ import Error from "./components/404";
 import Location from "./components/location";
 
 import Shop from "./components/shop";
-import ShopGrid from "./components/shop-grid";
+import Homestays from "./components/AllHomestays";
 import ProdductDetails from "./components/product-details";
 import ShopLeftSidebar from "./components/shop-left-sidebar";
 import ShopRightSidebar from "./components/shop-right-sidebar";
@@ -46,7 +46,7 @@ import History from "./components/history";
 
 import Place from "./components/place";
 import PlaceEdit from "./components/place-edit";
-import AdminPanelCreate from "./components/adminpanel-create";
+import PlaceCreate from "./components/place-create";
 import Categorycreate from "./components/categorycreate";
 import CategoryList from "./components/categorylist";
 import Categoryedit from "./components/categoryedit";
@@ -59,14 +59,14 @@ class Root extends Component {
             <Route exact path="/" component={HomeV4} />
             <Route path="/adminpanellist" component={Place} />
             <Route path="/adminpaneledit/:id" component={PlaceEdit} />
-            <Route path="/adminpanelcreate" component={AdminPanelCreate} />
+            <Route path="/addplace" component={PlaceCreate} />
             <Route path="/categorycreate" component={Categorycreate} />
             <Route path="/categorylist" component={CategoryList} />
             <Route path="/categoryedit/:id" component={Categoryedit} />
             <Route path="/about" component={About} />
             <Route path="/service" component={Service} />
             <Route path="/service-details" component={ServiceDetails} />
-            <Route path="/portfolio" component={Portfolio} />
+            <Route path="/portfolio/:id" component={Portfolio} />
             <Route path="/portfolio-v2" component={PortfolioV2} />
             <Route path="/portfolio-details" component={PortfolioDetails} />
             <Route path="/team" component={Team} />
@@ -76,7 +76,7 @@ class Root extends Component {
             <Route path="/404" component={Error} />
             <Route path="/location" component={Location} />
             <Route path="/shop" component={Shop} />
-            <Route path="/shop-grid" component={ShopGrid} />
+            <Route path="/allhomestays" component={Homestays} />
             <Route path="/shop-left-sidebar" component={ShopLeftSidebar} />
             <Route path="/shop-right-sidebar" component={ShopRightSidebar} />
 

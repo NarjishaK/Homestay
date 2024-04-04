@@ -57,16 +57,16 @@ function AdminPanel() {
   };
 
   const handleDelete = async (id) => {
-    const confirm = window.confirm("Are you sure you want to delete this")
-    if (confirm){
-    try {
-      await axios.delete(`http://localhost:7000/admin/deleted/${id}`);
-      fetchPlace()
-    } catch (error) {
-      console.error("There was an error deleting the place:", error);
+    const confirm = window.confirm("Are you sure you want to delete this");
+    if (confirm) {
+      try {
+        await axios.delete(`http://localhost:7000/admin/deleted/${id}`);
+        fetchPlace();
+      } catch (error) {
+        console.error("There was an error deleting the place:", error);
+      }
     }
   };
-}
 
   const handleEdit = (id) => {
     history.push(`/adminpaneledit/${id}`);
@@ -94,7 +94,7 @@ function AdminPanel() {
               <ListItemAvatar>
                 <Avatar
                   alt={place.name}
-                  src={`http://localhost:7000/upload/${place.image}`}
+                  src={`http://localhost:7000/upload/${place.image[0]}`}
                 />
               </ListItemAvatar>
               <ListItemText
@@ -134,12 +134,14 @@ function AdminPanel() {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>Place</TableCell>
-                <TableCell>Price</TableCell>
-                <TableCell>Status</TableCell>
-                <TableCell>Description</TableCell>
-                <TableCell>Rooms</TableCell>
-                <TableCell style={{ textAlign: "center" }}>Action</TableCell>
+                <TableCell id={styles.heading}>Place</TableCell>
+                <TableCell id={styles.heading}>Price</TableCell>
+                <TableCell id={styles.heading}>Status</TableCell>
+                <TableCell id={styles.heading}>Description</TableCell>
+                <TableCell id={styles.heading}>Rooms</TableCell>
+                <TableCell style={{ textAlign: "center" }} id={styles.heading}>
+                  Action
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -147,11 +149,11 @@ function AdminPanel() {
                 <TableRow key={place.id}>
                   <TableCell>
                     <a href={place.location}>
-                    <img
-                      alt={place.place}
-                      src={`http://localhost:7000/upload/${place.image}`}
-                      style={{ width: "150px", height: "150px" }}
-                    />
+                      <img
+                        alt={place.place}
+                        src={`http://localhost:7000/upload/${place.image[0]}`}
+                        style={{ width: "150px", height: "150px" }}
+                      />
                     </a>
                     <TableCell>{place.place}</TableCell>
                   </TableCell>
@@ -202,10 +204,15 @@ function AdminPanel() {
               <p>Status: {selectedHomestay.status}</p>
               <p>Description: {selectedHomestay.description}</p>
               <p>Rooms: {selectedHomestay.room}</p>
-              <img
-                src={`http://localhost:7000/upload/${selectedHomestay.image}`}
-              />
-               <a href= {selectedHomestay.location}> Click Here For Location</a>
+              {selectedHomestay.image.map((imgUrl, index) => (
+                <img
+                  key={index}
+                  src={`http://localhost:7000/upload/${imgUrl}`}
+                  alt={`Image ${index + 1}`}
+                  style={{ width: "100%", marginBottom: "10px" }}
+                />
+              ))}
+              <a href={selectedHomestay.location}> Click Here For Location</a>
             </div>
           )}
         </DialogContent>
