@@ -4,7 +4,7 @@ import parse from "html-react-parser";
 import axios from "axios";
 import styles from "../shop-components/shop.module.css";
 
-function ShopGridV1() {
+function HomestayList() {
   let publicUrl = process.env.PUBLIC_URL + "/";
   const [homestay, setHomestay] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -110,7 +110,7 @@ function ShopGridV1() {
                             <div className="product-img">
                               <Link to="/product-details">
                                 <img
-                                  src={`http://localhost:7000/upload/${place.image}`}
+                                  src={`http://localhost:7000/upload/${place.image[0]}`}
                                   alt="#"
                                 />
                               </Link>
@@ -520,4 +520,4 @@ function ShopGridV1() {
   );
 }
 
-export default ShopGridV1;
+export default HomestayList;

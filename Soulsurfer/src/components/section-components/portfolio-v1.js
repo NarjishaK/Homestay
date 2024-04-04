@@ -2,25 +2,42 @@ import React, { Component, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import parse from "html-react-parser";
 import axios from "axios";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
 function PortfolioV1() {
   // render() {
 
   let publicUrl = process.env.PUBLIC_URL + "/";
-  const [homestay , setHomestay] =useState([])
+  const [homestay, setHomestay] = useState([]);
+  const { id } = useParams();
 
-  useEffect(()=>{
-	fetchDisplay();
-  },[])
-  const fetchDisplay = async()=>{
-  const response = await axios.get("http://localhost:7000/admin/adminpanellist")
-  .then((response)=>{
-	setHomestay(response.data)
-  })
-  .catch((err)=>{
-	console.log(err);
-  })
-  }
+  // useEffect(()=>{
+  // fetchDisplay();
+  // },[])
+  // const fetchDisplay = async()=>{
+  // const response = await axios.get("http://localhost:7000/admin/adminpanellist")
+  // .then((response)=>{
+  // setHomestay(response.data)
+  // })
+  // .catch((err)=>{
+  // console.log(err);
+  // })
+  // }
+
+  useEffect(() => {
+    fetchProductdetails();
+  }, [id]);
+  const fetchProductdetails = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:7000/admin/placedetails/${id}`
+      );
+      setHomestay(response.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  
 
   return (
     <div className="ltn__gallery-area mb-120">
@@ -29,29 +46,29 @@ function PortfolioV1() {
         <div className="ltn__gallery-active row ltn__gallery-style-2 ltn__gallery-info-hide---">
           <div className="ltn__gallery-sizer col-1" />
           {/* gallery-item */}
-		  {homestay.map((place)=>(
-          <div className="ltn__gallery-item filter_category_3 col-lg-4 col-sm-6 col-12">
-            <div className="ltn__gallery-item-inner">
-              <div className="ltn__gallery-item-img">
-                <a>
-                  <img
-					src={`http://localhost:7000/upload/${place.image}`}
-                    alt="Image"
-                  />
-                  <span className="ltn__gallery-action-icon">
-                    <i className="fas fa-search" />
-                  </span>
-                </a>
-              </div>
-              <div className="ltn__gallery-item-info">
-                <h4 className="go-top">
-                  <Link to="/portfolio-details">{place.status} </Link>
-                </h4>
-                <p>{place.description} </p>
+          {homestay.map((place) => (
+            <div className="ltn__gallery-item filter_category_3 col-lg-4 col-sm-6 col-12">
+              <div className="ltn__gallery-item-inner">
+                <div className="ltn__gallery-item-img">
+                  <a>
+                    <img
+                      src={`http://localhost:7000/upload/${place.image[0]}`}
+                      alt="Image"
+                    />
+                    <span className="ltn__gallery-action-icon">
+                      <i className="fas fa-search" />
+                    </span>
+                  </a>
+                </div>
+                <div className="ltn__gallery-item-info">
+                  <h4 className="go-top">
+                    <Link to="/portfolio-details">{place.status} </Link>
+                  </h4>
+                  <p>{place.description} </p>
+                </div>
               </div>
             </div>
-          </div>
-		  ))}
+          ))}
         </div>
         <div id="ltn__inline_description_1" style={{ display: "none" }}>
           <h4 className="first">

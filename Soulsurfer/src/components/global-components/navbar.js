@@ -82,27 +82,27 @@ class Navbar extends Component {
 						<div className="ltn__main-menu go-top">
 							<ul>
 							<li ><Link to="/">Home</Link></li>
-							<li ><Link to="/portfolio">All</Link></li>
-							<li><Link to="/shop-grid">Homestay</Link></li>
-							{/* <li className="menu-icon"><Link to="/about">About</Link>
+							{/* <li ><Link to="/portfolio/:id">All</Link></li> */}
+							<li><Link to="/allhomestays">Homestay</Link></li>
+							<li><Link to="/about">About</Link></li>
+							<li><Link to="/faq">FAQ</Link></li>
+							<li><Link to="/team">Team</Link></li>
+							{/* <li className="menu-icon"><Link to="/about">Service</Link>
 								<ul>
-								<li><Link to="/about">About</Link></li>
 								<li><Link to="/service">Services</Link></li>
 								<li><Link to="/service-details">Service Details</Link></li>
 								<li><Link to="/portfolio-v2">Portfolio - 02</Link></li>
 								<li><Link to="/portfolio-details">Portfolio Details</Link></li>
-								<li><Link to="/team">Team</Link></li>
 								<li><Link to="/team-details">Team Details</Link></li>
-								<li><Link to="/faq">FAQ</Link></li>
 								<li><Link to="/location">Google Map Locations</Link></li>
 								</ul>
-							</li>
-							<li className="menu-icon"><Link to="/shop">Shop</Link>
+							</li> */}
+							<li className="menu-icon"><Link to="/shop-left-sidebar">Shop</Link>
 								<ul>
-									<li><Link to="/shop">Shop</Link></li>
-									<li><Link to="/shop-grid">Shop Grid</Link></li>
+									{/* <li><Link to="/shop">Shop</Link></li>
+									<li><Link to="/allhomestays">Shop Grid</Link></li>
 									<li><Link to="/shop-left-sidebar">Shop Left sidebar</Link></li>
-									<li><Link to="/shop-right-sidebar">Shop Right sidebar</Link></li>
+									<li><Link to="/shop-right-sidebar">Shop Right sidebar</Link></li> */}
 									<li><Link to="/product-details">Shop Details</Link></li>
 									<li><Link to="/cart">Cart</Link></li>
 									<li><Link to="/checkout">Checkout</Link></li>
@@ -111,7 +111,7 @@ class Navbar extends Component {
 									<li><Link to="/register">Register</Link></li>
 								</ul>
 							</li>
-							<li className="menu-icon"><Link to="/blog-grid">News</Link>
+							{/* <li className="menu-icon"><Link to="/blog-grid">News</Link>
 								<ul>
 									<li><Link to="/blog">News</Link></li>
 									<li><Link to="/blog-grid">News Grid</Link></li>
@@ -119,8 +119,8 @@ class Navbar extends Component {
 									<li><Link to="/blog-right-sidebar">News Right sidebar</Link></li>
 									<li><Link to="/blog-details">News details</Link></li>
 								</ul>
-							</li>
-							<li className="menu-icon"><Link to="#">Pages</Link>
+							</li> */}
+							{/* <li className="menu-icon"><Link to="#">Pages</Link>
 								<ul className="mega-menu">
 									<li><a href="#">Inner Pages</a>
 										<ul>
@@ -263,7 +263,7 @@ class Navbar extends Component {
 						<li><Link to="/shop">Shop</Link>
 						<ul className="sub-menu">
 							<li><Link to="/shop">Shop</Link></li>
-							<li><Link to="/shop-grid">Shop Grid</Link></li>
+							<li><Link to="/allhomestays">Shop Grid</Link></li>
 							<li><Link to="/shop-left-sidebar">Shop Left sidebar</Link></li>
 							<li><Link to="/shop-right-sidebar">Shop Right sidebar</Link></li>
 							<li><Link to="/product-details">Shop Details</Link></li>

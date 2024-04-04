@@ -14,8 +14,8 @@ function Admins1() {
   const [place, setPlace] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
-  const [image, setImage] = useState("");
-  const [imagePreviewUrl, setImagePreviewUrl] = useState("");
+  const [image, setImage] = useState([]);
+  const [imagePreviewUrl, setImagePreviewUrl] = useState([]);
   const [status, setStatus] = useState("");
   const [location, setLocation] = useState("");
   const [room, setRoom] = useState("");
@@ -44,14 +44,7 @@ function Admins1() {
     fetchPlaces();
   }, [id]);
 
-  const handleImage = (e) => {
-    const selectedImage = e.target.files[0];
-    if (selectedImage) {
-      setImage(selectedImage);
-      const imagePreviewUrl = URL.createObjectURL(selectedImage); 
-      setImagePreviewUrl(imagePreviewUrl);
-    }
-  };
+ 
   const handleUpdate = async (e) => {
     e.preventDefault();
     let formData = new FormData();
@@ -61,7 +54,9 @@ function Admins1() {
     formData.append("location", location);
     formData.append("description", description);
     formData.append("price", price);
-    formData.append("image", image);
+    for(let i =0;i<image.length;i++){
+      formData.append ('image',image[i])
+    }
     try {
       const response = await axios.put(
         `http://localhost:7000/admin/updated/${id}`,
@@ -87,6 +82,16 @@ function Admins1() {
       console.log(err);
     }
   }
+
+  const handleImage = (e) => {
+    const selectedImages = e.target.files;
+    setImage([...selectedImages]);
+    
+    const imageUrls = Array.from(selectedImages).map(file =>
+      URL.createObjectURL(file)
+    );
+    setImagePreviewUrl(imageUrls);
+  };
 
 
   return (
@@ -126,7 +131,7 @@ function Admins1() {
                 <input
                   type="text"
                   id="place"
-                  placeholder="Place Name"
+                  placeholder="Location"
                   value={location}
                   onChange={(e) => setLocation(e.target.value)}
                 />
@@ -137,6 +142,7 @@ function Admins1() {
                   placeholder="Image"
                   onChange={handleImage}
                   accept="image/*"
+                  multiple
                 />
                 {imagePreviewUrl && (
                   <img
@@ -148,7 +154,7 @@ function Admins1() {
                 <br />
                 <br />
                 <input
-                  type="number"
+                  type="text"
                   placeholder="Price"
                   value={price}
                   onChange={(e) => setPrice(e.target.value)}

@@ -116,13 +116,15 @@ function Admins() {
                   onChange={(e) => setLocation(e.target.value)}
                 />
 
-                <input
+                {/* <input
                   type="file"
                   id="image"
                   placeholder="Image"
                   onChange={handleImage}
                   accept="image/*"
-                />
+                /> */}
+                <input type="file" id="image" placeholder="Image" onChange={handleImage} accept="image/*" multiple />
+
                 {imagePreview && (
                   <img
                     src={imagePreview}

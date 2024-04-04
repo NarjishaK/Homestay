@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const placeSchema = mongoose.Schema({
   place: { type: String, required: true },
-  image: { type: String, required: true },
+  image: [{ type: String, required: true }],
   description: { type: String, required: true },
   price: { type: String, required: true },
   status: { type: String, required: true },
