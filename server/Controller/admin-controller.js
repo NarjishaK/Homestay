@@ -6,7 +6,7 @@ const CategoryList = require("../modals/category-model");
 //homestays//
 
 exports.adminpanel = asyncHandler(async (req, res) => {
-  const { place, price, description, status, room, location } = req.body;
+  const { place, price, description, status, room, location,refund,ogprice,address,about,housename } = req.body;
   // const image = req.file.filename;
   const image = req.files.map((file) => file.filename);
   try {
@@ -16,6 +16,11 @@ exports.adminpanel = asyncHandler(async (req, res) => {
       price: price,
       image: image,
       room: room,
+      refund:refund,
+      address:address,
+      ogprice:ogprice,
+      housename:housename,
+      about:about,
       location: location,
       status: status,
     });
@@ -71,7 +76,7 @@ exports.adminpaneledit = asyncHandler(async (req, res) => {
 
 exports.updated = asyncHandler(async (req, res) => {
   const { id } = req.params;
-  const { place, price, description, status, room, location } = req.body;
+  const { place, price, description, status, room, location,refund,ogprice,address,about,housename} = req.body;
   const newImages = req.files.map((file) => file.filename);
   try {
     const places = await placeList.findById(id);
@@ -81,6 +86,11 @@ exports.updated = asyncHandler(async (req, res) => {
     places.place = place;
     places.price = price;
     places.room = room;
+    places.housename = housename;
+    places.refund = refund;
+    places.ogprice = ogprice;
+    places.address = address;
+    places.about = about;
     places.location = location;
     places.description = description;
     places.status = status;
