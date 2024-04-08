@@ -51,12 +51,12 @@ class Footer_v1 extends Component {
 				          <div className="footer-widget footer-about-widget">
 				            <div className="footer-logo">
 				              <div className="site-logo">
-				                <img src={publicUrl+"assets/img/logo-2.png"} alt="Logo" />
+				                <img src={publicUrl+"assets/img/logo.png"} alt="Logo" style={{height:"250px"}} />
 				              </div>
 				            </div>
-				            <p>Lorem Ipsum is simply dummy text of the and typesetting industry. Lorem Ipsum is dummy text of the printing.</p>
-				            <div className="footer-address">
-				              <ul>
+				            {/* <p>Lorem Ipsum is simply dummy text of the and typesetting industry. Lorem Ipsum is dummy text of the printing.</p> */}
+				            {/* <div className="footer-address"> */}
+				              {/* <ul>
 				                <li>
 				                  <div className="footer-address-icon">
 				                    <i className="icon-placeholder" />
@@ -81,29 +81,14 @@ class Footer_v1 extends Component {
 				                    <p><a href="mailto:example@example.com">example@example.com</a></p>
 				                  </div>
 				                </li>
-				              </ul>
-				            </div>
+				              </ul> */}
+				            {/* </div>
 				            <div className="ltn__social-media mt-20">
 						    	<Social />
-				            </div>
+				            </div> */}
 				          </div>
 				        </div>
-				        <div className="col-xl-4 col-md-4 col-sm-12 col-12">
-				          <div className="footer-widget footer-menu-widget clearfix">
-				            <h4 className="footer-title">Service</h4>
-				            <div className="footer-menu go-top">
-				              <ul>
-				                <li><Link to="/about">Home</Link></li>
-				                {/* <li><Link to="/blog-grid">About</Link></li> */}
-				                <li><Link to="/shop">All Homestays </Link></li>
-				                <li><Link to="/contact">Contact</Link></li>
-				                <li><Link to="/faq">FAQ</Link></li>
-				                <li><Link to="/checkout">Checkout</Link></li>
-				                {/* <li><Link to="/contact">Contact us</Link></li> */}
-				              </ul>
-				            </div>
-				          </div>
-				        </div>
+				        
 				        {/* <div className="col-xl-2 col-md-6 col-sm-6 col-12">
 				          <div className="footer-widget footer-menu-widget clearfix">
 				            <h4 className="footer-title">Services</h4>
@@ -134,7 +119,51 @@ class Footer_v1 extends Component {
 				            </div>
 				          </div>
 				        </div> */}
-				        <div className="col-xl-4 col-md-4 col-sm-12 col-12">
+						<div className="col-xl-4 col-md-4 col-sm-12 col-12">
+				          <div className="footer-widget footer-about-widget">
+				            <h4>Get In Touch</h4>
+				            <div className="footer-address">
+				              <ul>
+				                <li>
+				                  <div className="footer-address-icon">
+				                    <i className="icon-placeholder" />
+				                  </div>
+				                  <div className="footer-address-info">
+				                    <p>First ﬂoor, Beebizzle Building, near Aster Ortho Hospital, Kodal Nadakkavu, Pantheeramkavu, Kozhikode, Kerala</p>
+				                  </div>
+				                </li>
+				                <li>
+				                  <div className="footer-address-icon">
+				                    <i className="icon-call" />
+				                  </div>
+				                  <div className="footer-address-info">
+				                    <p><a href="tel:+91 80894 32334">+91 80894 32334</a></p>
+				                  </div>
+				                </li>
+				                <li>
+				                  <div className="footer-address-icon">
+				                    <i className="icon-mail" />
+				                  </div>
+				                  <div className="footer-address-info">
+				                    <p><a href="mailto:kaiztren@gmail.com">kaiztren@gmail.com</a></p>
+				                  </div>
+				                </li>
+				              </ul>
+				            </div>
+				            <div className="ltn__social-media mt-20">
+						    	<Social />
+				            </div>
+							{/* <h5 className="mt-30">We Accept</h5>
+				            <img src={publicUrl+"assets/img/icons/payment-4.png"} alt="Payment Image" /> */}
+				          </div>
+				        </div>
+						<div className="col-xl-4 col-md-4 col-sm-12 col-12">
+				          <div className="footer-widget footer-menu-widget clearfix">
+						  <h5 className="mt-30">We Accept</h5> <br/>
+				            <img src={publicUrl+"assets/img/icons/payment-4.png"} alt="Payment Image" />
+				          </div>
+				        </div>
+				        {/* <div className="col-xl-4 col-md-4 col-sm-12 col-12">
 				          <div className="footer-widget footer-newsletter-widget">
 				            <h4 className="footer-title">Newsletter</h4>
 				            <p>Subscribe to our weekly Newsletter and receive updates via email.</p>
@@ -149,7 +178,7 @@ class Footer_v1 extends Component {
 				            <h5 className="mt-30">We Accept</h5>
 				            <img src={publicUrl+"assets/img/icons/payment-4.png"} alt="Payment Image" />
 				          </div>
-				        </div>
+				        </div> */}
 				      </div>
 				    </div>
 				  </div>

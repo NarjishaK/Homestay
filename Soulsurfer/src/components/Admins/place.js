@@ -31,7 +31,7 @@ import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import axios from "axios";
-import styles from "../CSS/adminpanel.module.css";
+import styles from "./admin.module.css";
 
 function AdminPanel() {
   const theme = useTheme();
@@ -199,9 +199,15 @@ function AdminPanel() {
         <DialogContent>
           {selectedHomestay && (
             <div>
-              <p>Place: {selectedHomestay.place}</p>
-              <p>Price: {selectedHomestay.price}</p>
+              <h3>Place: {selectedHomestay.place}</h3>
+              <h5>Housename: {selectedHomestay.housename}</h5>
+              <p>Offer Price: {selectedHomestay.price}</p>
+              <p>Og Price: {selectedHomestay.ogprice}</p>
+              <h4 style={{textDecoration:"underline"}}>{selectedHomestay.place}</h4>
+              <p> {selectedHomestay.about}</p>
+              <p>Address: {selectedHomestay.address}</p>
               <p>Status: {selectedHomestay.status}</p>
+              <p>Refund: {selectedHomestay.refund}</p>
               <p>Description: {selectedHomestay.description}</p>
               <p>Rooms: {selectedHomestay.room}</p>
               {selectedHomestay.image.map((imgUrl, index) => (

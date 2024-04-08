@@ -1,4 +1,4 @@
-import PageHeader from "./global-components/page-header";
+import PageHeader from "../global-components/page-header";
 // import CallToActionV1 from './section-components/call-to-action-v1';
 // <CallToActionV1 />
 import React, { Component, useEffect, useState } from "react";
@@ -17,6 +17,11 @@ function Admins() {
   const [status, setStatus] = useState("");
   const [room, setRoom] = useState("");
   const [location, setLocation] = useState("");
+  const [refund, setRefund] = useState("");
+  const [address, setAddress] = useState("");
+  const [ogprice, setOgprice] = useState("");
+  const [about, setAbout] = useState("");
+  const [housename, setHousename] = useState("");
   const [imagePreview, setImagePreview] = useState("");
   const [category, setCategory] = useState([]);
   const handleCreate = async (e) => {
@@ -28,7 +33,12 @@ function Admins() {
     formData.append("location", location);
     formData.append("description", description);
     formData.append("price", price);
+    formData.append("housename", housename);
     formData.append("image", image);
+    formData.append("refund", refund);
+    formData.append("about", about);
+    formData.append("ogprice", ogprice);
+    formData.append("address", address);
     try {
       const response = await axios.post(
         "http://localhost:7000/admin/adminpanel",
@@ -111,18 +121,31 @@ function Admins() {
                 <input
                   type="text"
                   id="place"
+                  placeholder="Housename"
+                  value={housename}
+                  onChange={(e) => setHousename(e.target.value)}
+                />
+                <input
+                  type="text"
+                  id="place"
                   placeholder="Location"
                   value={location}
                   onChange={(e) => setLocation(e.target.value)}
                 />
-
-                {/* <input
-                  type="file"
-                  id="image"
-                  placeholder="Image"
-                  onChange={handleImage}
-                  accept="image/*"
-                /> */}
+                <input
+                  type="text"
+                  id="place"
+                  placeholder="Address"
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
+                />
+                <textarea
+                  type="text"
+                  id="place"
+                  placeholder="About the place"
+                  value={about}
+                  onChange={(e) => setAbout(e.target.value)}
+                />
                 <input type="file" id="image" placeholder="Image" onChange={handleImage} accept="image/*" multiple />
 
                 {imagePreview && (
@@ -136,11 +159,17 @@ function Admins() {
                 <br />
                 <input
                   type="text"
-                  placeholder="price"
+                  placeholder="Offer price"
                   value={price}
                   onChange={(e) => setPrice(e.target.value)}
                 />
                 <input
+                  type="text"
+                  placeholder="Ogprice"
+                  value={ogprice}
+                  onChange={(e) => setOgprice(e.target.value)}
+                />
+                <textarea
                   type="text"
                   placeholder="Description"
                   value={description}
@@ -157,6 +186,21 @@ function Admins() {
                     onChange={(e) => setStatus(e.target.value)}
                   >
                     <option>Status</option>
+                    <option>Available</option>
+                    <option>Not Available</option>
+                  </select>
+                </div><br/>
+                <div style={{ width: "100%" }}>
+                  <select
+                    style={{
+                      width: "100%",
+                      height: "55px",
+                      borderColor: "#b7d1d0",
+                    }}
+                    value={refund}
+                    onChange={(e) => setRefund(e.target.value)}
+                  >
+                    <option>Refund</option>
                     <option>Available</option>
                     <option>Not Available</option>
                   </select>

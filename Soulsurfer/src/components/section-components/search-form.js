@@ -67,9 +67,10 @@ function SearchForm() {
                       <div className="ltn__car-dealer-form-item ltn__custom-icon---- ltn__icon-meter---- col-lg-3 col-md-6">
                         <select className="nice-select">
                           <option>Rooms</option>
-                          {homestay.map((rooms)=>(
-                          <option>{rooms.room}</option>
-                          ))}
+                          <option>1BHK</option>
+                          <option>2BHK</option>
+                          <option>3BHK</option>
+                          <option>4BHK</option>
                         </select>
                       </div>
                       <div className="ltn__car-dealer-form-item ltn__custom-icon---- ltn__icon-calendar---- col-lg-3 col-md-6">

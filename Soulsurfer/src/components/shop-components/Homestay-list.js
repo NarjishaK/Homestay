@@ -3,11 +3,15 @@ import { Link } from "react-router-dom";
 import parse from "html-react-parser";
 import axios from "axios";
 import styles from "../shop-components/shop.module.css";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function HomestayList() {
   let publicUrl = process.env.PUBLIC_URL + "/";
   const [homestay, setHomestay] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [selectedPlace, setSelectedPlace] = useState(null);
+  const history =useHistory()
+
 
   useEffect(() => {
     fetchHomestay();
@@ -38,6 +42,16 @@ function HomestayList() {
           place.room.toLowerCase().includes(searchTerm.toLowerCase())
       )
     : homestay;
+
+
+    const handleview = (placeId) => {
+      const placeDetails = homestay.find((place) => place._id === placeId);
+      setSelectedPlace(placeDetails);
+    };
+
+    const aboutDetails= async(id)=>{
+      history.push(`/about/${id}`)
+    }
   return (
     <div>
       <div className="ltn__product-area ltn__product-gutter mb-100">
@@ -108,12 +122,12 @@ function HomestayList() {
                         <div className="col-lg-4 col-sm-6 col-12">
                           <div className="ltn__product-item ltn__product-item-4 ltn__product-item-5 text-center---">
                             <div className="product-img">
-                              <Link to="/product-details">
+                              <a onClick={()=>aboutDetails(place._id)}>
                                 <img
                                   src={`http://localhost:7000/upload/${place.image[0]}`}
                                   alt="#"
                                 />
-                              </Link>
+                              </a>
                             </div>
                             <div className="product-info">
                               <div className="product-badge">
@@ -156,6 +170,7 @@ function HomestayList() {
                                       title="Quick View"
                                       data-bs-toggle="modal"
                                       data-bs-target="#quick_view_modal"
+                                      onClick={()=>handleview(place._id)}
                                     >
                                       <i className="flaticon-expand" />
                                     </a>
@@ -174,7 +189,7 @@ function HomestayList() {
                                     <span className="go-top">
                                       <Link
                                         to="/product-details"
-                                        title="Product Details"
+                                        title="Booking Now"
                                       >
                                         <i className="flaticon-add" />
                                       </Link>
@@ -188,6 +203,7 @@ function HomestayList() {
                                 <span>
                                 ₹{place.price}
                                   <label>/Day</label>
+                                  {/* <p>Booking Now</p> */}
                                 </span>
                               </div>
                             </div>
@@ -262,7 +278,7 @@ function HomestayList() {
                         <div className="modal-product-info go-top">
                           <h5>
                             <Link to="/product-details">
-                              Brake Conversion Kit
+                              Brakee Conversion Kit
                             </Link>
                           </h5>
                           <p className="added-cart">
@@ -301,6 +317,8 @@ function HomestayList() {
         </div>
       </div>
 
+
+{selectedPlace && (
       <div className="ltn__modal-area ltn__quick-view-modal-area">
         <div className="modal fade" id="quick_view_modal" tabIndex={-1}>
           <div className="modal-dialog modal-lg" role="document">
@@ -323,8 +341,8 @@ function HomestayList() {
                       <div className="col-lg-6 col-12">
                         <div className="modal-product-img">
                           <img
-                            src={publicUrl + "assets/img/product/4.png"}
-                            alt="#"
+ src={`http://localhost:7000/upload/${selectedPlace.image[0]}`}
+                             alt="#"
                           />
                         </div>
                       </div>
@@ -363,10 +381,10 @@ function HomestayList() {
                               </li>
                             </ul>
                           </div>
-                          <h3>Brake Conversion Kit</h3>
+                          <h3>{selectedPlace.place}</h3>
                           <div className="product-price">
-                            <span>$149.00</span>
-                            <del>$165.00</del>
+                            <span>₹{selectedPlace.price}</span>
+                            <del>₹165.00</del>
                           </div>
                           <div className="modal-product-meta ltn__product-details-menu-1">
                             <ul>
@@ -443,7 +461,7 @@ function HomestayList() {
           </div>
         </div>
       </div>
-
+)}
       <div className="ltn__modal-area ltn__add-to-cart-modal-area">
         <div className="modal fade" id="add_to_cart_modal" tabIndex={-1}>
           <div className="modal-dialog modal-md" role="document">

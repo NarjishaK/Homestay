@@ -10,7 +10,7 @@ class CallToActonV1 extends Component {
         let imagealt = 'image'
 
     return <div className="ltn__call-to-action-area call-to-action-6 before-bg-bottom" >
-			  <div className="container">
+			  {/* <div className="container">
 			    <div className="row">
 			      <div className="col-lg-12">
 			        <div className="call-to-action-inner call-to-action-inner-6 ltn__secondary-bg position-relative text-center---">
@@ -24,7 +24,7 @@ class CallToActonV1 extends Component {
 			        </div>
 			      </div>
 			    </div>
-			  </div>
+			  </div> */}
 			</div>
         }
 }

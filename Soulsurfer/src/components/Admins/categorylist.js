@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { Component, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import styles from "../CSS/adminpanel.module.css";
+import styles from "./admin.module.css";
 import EditIcon from "@material-ui/icons/Edit";
 import { IconButton } from "@material-ui/core";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";

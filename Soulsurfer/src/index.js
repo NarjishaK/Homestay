@@ -6,7 +6,7 @@ import {
   Route,
   Switch,
 } from "react-router-dom";
-import HomeV4 from "./components/home-v4";
+import HomeV4 from "./components/home";
 
 import About from "./components/about";
 import Service from "./components/service";
@@ -37,19 +37,22 @@ import Contact from "./components/contact";
 import Cart from "./components/cart";
 import Checkout from "./components/checkout";
 import MyAccount from "./components/my-account";
-import Login from "./components/login";
-import Register from "./components/register";
+import Login from "./components/Users/login";
+import Register from "./components/Users/register";
 import AddListing from "./components/add-listing";
 import Wishlist from "./components/wishlist";
 import OrderTracking from "./components/order-tracking";
 import History from "./components/history";
 
-import Place from "./components/place";
-import PlaceEdit from "./components/place-edit";
-import PlaceCreate from "./components/place-create";
-import Categorycreate from "./components/categorycreate";
-import CategoryList from "./components/categorylist";
-import Categoryedit from "./components/categoryedit";
+import Place from "./components/Admins/place";
+import PlaceEdit from "./components/Admins/place-edit";
+import PlaceCreate from "./components/Admins/place-create";
+import Categorycreate from "./components/Admins/categorycreate";
+import CategoryList from "./components/Admins/categorylist";
+import Categoryedit from "./components/Admins/categoryedit";
+//
+import UserLists from "./components/Admins/userlist"
+import UserProfile from "./components/Users/userprofile";
 class Root extends Component {
   render() {
     return (
@@ -63,7 +66,11 @@ class Root extends Component {
             <Route path="/categorycreate" component={Categorycreate} />
             <Route path="/categorylist" component={CategoryList} />
             <Route path="/categoryedit/:id" component={Categoryedit} />
-            <Route path="/about" component={About} />
+            {/* // */}
+            <Route path="/userlists" component={UserLists}/>
+            <Route path="/userprofile/:id" component={UserProfile}/>
+
+            <Route path="/about/:id" component={About} />
             <Route path="/service" component={Service} />
             <Route path="/service-details" component={ServiceDetails} />
             <Route path="/portfolio/:id" component={Portfolio} />

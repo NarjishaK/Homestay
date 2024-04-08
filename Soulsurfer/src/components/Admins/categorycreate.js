@@ -1,5 +1,5 @@
 import axios from "axios";
-import PageHeader from "./global-components/page-header";
+import PageHeader from "../global-components/page-header";
 // import CallToActionV1 from './section-components/call-to-action-v1';
 // <CallToActionV1 />
 import React, { Component, useState } from "react";
