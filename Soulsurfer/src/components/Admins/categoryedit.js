@@ -1,5 +1,5 @@
 import axios from "axios";
-import PageHeader from "./global-components/page-header";
+import PageHeader from "../global-components/page-header";
 import React, { Component, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";

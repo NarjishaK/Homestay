@@ -35,7 +35,7 @@ function BlogSlider(props) {
               >
                 New &amp; Popular
               </h6>
-              <h1 className="section-title">Leatest HOmestays</h1>
+              <h1 className="section-title">Leatest Homestays</h1>
             </div>
           </div>
         </div>

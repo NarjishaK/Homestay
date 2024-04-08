@@ -18,7 +18,7 @@ class TeamV2 extends Component {
 						<img src={publicUrl+"assets/img/team/4.jpg"} alt="Image" />
 						</div>
 						<div className="team-info">
-						<h4><Link to="/team-details">Rosalina D. William</Link></h4>
+						<h4><Link to="/team-details">Rosalina D. Williiam</Link></h4>
 						<h6 className="ltn__secondary-color">Real Estate Broker</h6>
 						<div className="ltn__social-media">
 							<ul>

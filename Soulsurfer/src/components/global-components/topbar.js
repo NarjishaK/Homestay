@@ -15,7 +15,7 @@ class TopBar extends Component {
 					<div className="ltn__top-bar-menu">
 					<ul>
 						<li><a href="mailto:info@webmail.com?Subject=Flower%20greetings%20to%20you"><i className="icon-mail" /> info@webmail.com</a></li>
-						<li><a href="locations.html"><i className="icon-placeholder" /> 15/A, Nest Tower, NYC</a></li>
+						{/* <li><a href="locations.html"><i className="icon-placeholder" /> 15/A, Nest Tower, NYC</a></li> */}
 					</ul>
 					</div>
 				</div>
@@ -25,7 +25,7 @@ class TopBar extends Component {
 						<ul>
 						<li>
 							{/* ltn__language-menu */}
-							<div className="ltn__drop-menu ltn__currency-menu ltn__language-menu">
+							{/* <div className="ltn__drop-menu ltn__currency-menu ltn__language-menu">
 							<ul>
 								<li><a href="#" className="dropdown-toggle"><span className="active-currency">English</span></a>
 								<ul>
@@ -38,7 +38,7 @@ class TopBar extends Component {
 								</ul>
 								</li>
 							</ul>
-							</div>
+							</div> */}
 						</li>
 						<li>
 							{/* ltn__social-media */}

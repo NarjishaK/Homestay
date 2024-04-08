@@ -18,7 +18,6 @@ class NavbarV2 extends Component {
 						<div className="ltn__top-bar-menu">
 							<ul>
 							<li><a href="mailto:info@webmail.com?Subject=Flower%20greetings%20to%20you"><i className="icon-mail" /> info@webmail.com</a></li>
-							<li><a href="locations.html"><i className="icon-placeholder" /> 15/A, Nest Tower, NYC</a></li>
 							</ul>
 						</div>
 						</div>
@@ -61,7 +60,7 @@ class NavbarV2 extends Component {
 						<div className="col">
 						<div className="site-logo-wrap">
 							<div className="site-logo go-top">
-							<Link to="/"><img src={publicUrl+"assets/img/logo.png"} alt="Logo" /></Link>
+							<Link to="/"><img src={publicUrl+"assets/img/logo.png" } alt="Logo" style={{height:"160px"}}/></Link>
 							</div>
 							<div className="get-support clearfix d-none">
 							<div className="get-support-icon">
@@ -82,8 +81,8 @@ class NavbarV2 extends Component {
 								<li ><Link to="/">Home</Link></li>
 								{/* <li ><Link to="/portfolio/:id">All</Link></li> */}
 								<li><Link to="/allhomestays">Homestay</Link></li>
-								<li><Link to="/about">About</Link></li>
-								<li><Link to="/faq">FAQ</Link></li>
+								{/* <li><Link to="/about">About</Link></li> */}
+								{/* <li><Link to="/faq">FAQ</Link></li> */}
 								<li><Link to="/team">Team</Link></li>
 
 								{/* <li className="menu-icon"><Link to="/about">Service</Link>
@@ -156,9 +155,9 @@ class NavbarV2 extends Component {
 								</ul>
 							</li> */}
 								<li><Link to="/contact">Contact</Link></li>
-								<li className="special-link">
+								{/* <li className="special-link">
 									<Link to="/add-listing">Add Listing</Link>
-								</li>
+								</li> */}
 								</ul>
 							</div>
 							</nav>

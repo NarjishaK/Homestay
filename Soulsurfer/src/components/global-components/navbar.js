@@ -16,7 +16,6 @@ class Navbar extends Component {
 					<div className="ltn__top-bar-menu">
 						<ul>
 						<li><a href="mailto:info@webmail.com?Subject=Flower%20greetings%20to%20you"><i className="icon-mail" /> info@webmail.com</a></li>
-						<li><a href="locations.html"><i className="icon-placeholder" /> 15/A, Nest Tower, NYC</a></li>
 						</ul>
 					</div>
 					</div>
@@ -44,12 +43,11 @@ class Navbar extends Component {
 							<li>
 								<Social />
 							</li>
-							<li>
-							{/* header-top-btn */}
+							{/* <li>
 							<div className="header-top-btn">
 								<Link to="/add-listing">Add Listing</Link>
 							</div>
-							</li>
+							</li> */}
 						</ul>
 						</div>
 					</div>
@@ -63,7 +61,7 @@ class Navbar extends Component {
 					<div className="col">
 					<div className="site-logo-wrap">
 						<div className="site-logo go-top">
-						<Link to="/"><img src={publicUrl+"assets/img/logo.png"} alt="Logo" /></Link>
+						<Link to="/"><img src={publicUrl+"assets/img/logo.png"} alt="Logo"  style={{height:"160px"}}/></Link>
 						</div>
 						<div className="get-support clearfix d-none">
 						<div className="get-support-icon">
@@ -84,8 +82,8 @@ class Navbar extends Component {
 							<li ><Link to="/">Home</Link></li>
 							{/* <li ><Link to="/portfolio/:id">All</Link></li> */}
 							<li><Link to="/allhomestays">Homestay</Link></li>
-							<li><Link to="/about">About</Link></li>
-							<li><Link to="/faq">FAQ</Link></li>
+							{/* <li><Link to="/about">About</Link></li>
+							<li><Link to="/faq">FAQ</Link></li> */}
 							<li><Link to="/team">Team</Link></li>
 							{/* <li className="menu-icon"><Link to="/about">Service</Link>
 								<ul>

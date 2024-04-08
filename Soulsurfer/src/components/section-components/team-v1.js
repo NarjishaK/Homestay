@@ -15,7 +15,7 @@ class TeamV1 extends Component {
 					<div className="col-lg-12">
 					<div className="section-title-area ltn__section-title-2--- text-center">
 						<h6 className="section-subtitle section-subtitle-2 ltn__secondary-color">Team</h6>
-						<h1 className="section-title">Property Agents</h1>
+						<h1 className="section-title">Popular Homestays</h1>
 					</div>
 					</div>
 				</div>
@@ -26,7 +26,7 @@ class TeamV1 extends Component {
 						<img src={publicUrl+"assets/img/team/4.jpg"} alt="Image" />
 						</div>
 						<div className="team-info">
-						<h4><Link to="/team-details">Rosalina D. William</Link></h4>
+						<h4><Link to="/team-details">Rosalina D. Willliam</Link></h4>
 						<h6 className="ltn__secondary-color">Real Estate Broker</h6>
 						<div className="ltn__social-media">
 							<ul>
