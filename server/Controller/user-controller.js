@@ -2,7 +2,7 @@ const asyncHandler = require("express-async-handler");
 const UserModel = require("../modals/user-model");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-const { updatecategory } = require("./admin-controller");
+// const { updatecategory } = require("./admin-controller");
 
 exports.userRegistration = asyncHandler(async (req, res) => {
   const { username, password, confirm, address, email, phone } = req.body;

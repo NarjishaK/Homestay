@@ -183,6 +183,9 @@ function AdminPanel() {
                     >
                       <DeleteIcon />
                     </IconButton>
+                    <IconButton onClick={() => handleShow(place._id)}>
+                  <VisibilityIcon />
+                </IconButton>
                   </TableCell>
                 </TableRow>
               ))}

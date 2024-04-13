@@ -13,7 +13,7 @@ function Admins() {
   const [place, setPlace] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState([]);
   const [status, setStatus] = useState("");
   const [room, setRoom] = useState("");
   const [location, setLocation] = useState("");
@@ -22,9 +22,9 @@ function Admins() {
   const [ogprice, setOgprice] = useState("");
   const [about, setAbout] = useState("");
   const [housename, setHousename] = useState("");
-  const [imagePreview, setImagePreview] = useState("");
+  const [imagePreviews, setImagePreviews] = useState([]);
   const [category, setCategory] = useState([]);
-  const handleCreate = async (e) => {
+  const handleCreateplace = async (e) => {
     e.preventDefault();
     let formData = new FormData();
     formData.append("place", place);
@@ -34,7 +34,10 @@ function Admins() {
     formData.append("description", description);
     formData.append("price", price);
     formData.append("housename", housename);
-    formData.append("image", image);
+    // formData.append("image", image);
+    for(let i =0;i<image.length;i++){
+      formData.append ('image',image[i])
+    }
     formData.append("refund", refund);
     formData.append("about", about);
     formData.append("ogprice", ogprice);
@@ -56,15 +59,15 @@ function Admins() {
     }
   };
 
-  const handleImage = (e) => {
-    const selectedImage = e.target.files[0];
-    if (selectedImage) {
-      setImage(selectedImage);
-      const imagePreviewUrl = URL.createObjectURL(selectedImage);
-      setImagePreview(imagePreviewUrl);
-    }
+  const handleImages = (e) => {
+    const selectedImage = e.target.files;
+    setImage([...selectedImage]);
+    
+    const imageUrls = Array.from(selectedImage).map(file =>
+      URL.createObjectURL(file)
+    );
+    setImagePreviews(imageUrls);
   };
-
   //categorylist//
 
   useEffect(() => {
@@ -146,11 +149,11 @@ function Admins() {
                   value={about}
                   onChange={(e) => setAbout(e.target.value)}
                 />
-                <input type="file" id="image" placeholder="Image" onChange={handleImage} accept="image/*" multiple />
+                <input type="file" id="image" placeholder="Image" onChange={handleImages} accept="image/*" multiple />
 
-                {imagePreview && (
+                {imagePreviews && (
                   <img
-                    src={imagePreview}
+                    src={imagePreviews}
                     alt="Preview"
                     style={{ width: "100%", height: "auto" }}
                   />
@@ -229,7 +232,7 @@ function Admins() {
                     className="theme-btn-1 btn reverse-color btn-block"
                     type="submit"
                     style={{ width: "100%" }}
-                    onClick={handleCreate}
+                    onClick={handleCreateplace}
                   >
                     CREATE
                   </button>

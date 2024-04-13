@@ -8,7 +8,7 @@ import Service from './section-components/service-v2';
 import CallToActionV3 from './section-components/call-to-action-v3';
 import Video from './section-components/video-v3';
 import Brand from './section-components/brand';
-import Testimonial from './section-components/testimonial-v4';
+import Suggessions from './section-components/suggessionplace';
 import Gallery from './section-components/gallery-v1';
 import BlogSlider from './blog-components/blog-slider-v1';
 import CallToActionV1 from './section-components/call-to-action-v1';
@@ -25,7 +25,7 @@ const Home_V1 = () => {
         <CallToActionV3/>
         <Video/>
         <Brand/>
-        <Testimonial/>
+        <Suggessions/>
         <Gallery/>
         <BlogSlider sectionClass="pt-90"  customClass="section-subtitle-2"/>
         <CallToActionV1 />
