@@ -1,4 +1,3 @@
-
 import axios from "axios";
 import React, { Component, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -7,7 +6,7 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function CategoryV3() {
   const [category, setCategory] = useState([]);
-  const history =useHistory()
+  const history = useHistory();
 
   useEffect(() => {
     fetchCategory();
@@ -24,10 +23,10 @@ function CategoryV3() {
     }
   };
 
-  const handleCategory =(id)=>{
+  const handleCategory = (id) => {
     // window.location.href = "/portfolio"
- history.push(`/portfolio/${id}`)
-  }
+    history.push(`/portfolio/${id}`);
+  };
 
   let publicUrl = process.env.PUBLIC_URL + "/";
 
@@ -52,13 +51,17 @@ function CategoryV3() {
                 className="ltn__banner-item ltn__banner-style-4 text-color-white bg-image"
                 data-bs-bg={`http://localhost:7000/upload/${categories.image}`}
               >
+                
                 <div className="ltn__banner-info">
                   <h3>
                     <Link to="/shop"> {categories.name}</Link>
                   </h3>
                   <p> Great Deals Available</p>
                   {/* <Link to={categories._id}> */}
-                  <mark onClick={()=>handleCategory(categories._id)}> Show More</mark>
+                  <mark onClick={() => handleCategory(categories._id)}>
+                    {" "}
+                    Show More
+                  </mark>
                   {/* </Link> */}
                 </div>
               </div>

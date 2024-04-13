@@ -8,13 +8,14 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 function HomestayList() {
   let publicUrl = process.env.PUBLIC_URL + "/";
   const [homestay, setHomestay] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedPlace, setSelectedPlace] = useState(null);
-  const history =useHistory()
-
+  const history = useHistory();
 
   useEffect(() => {
     fetchHomestay();
+    fetchCategory();
   }, []);
 
   const fetchHomestay = async () => {
@@ -22,6 +23,17 @@ function HomestayList() {
       .get("http://localhost:7000/admin/adminpanellist")
       .then((response) => {
         setHomestay(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const fetchCategory = async () => {
+    const response = await axios
+      .get("http://localhost:7000/admin/categorylist")
+      .then((response) => {
+        setCategories(response.data);
       })
       .catch((err) => {
         console.log(err);
@@ -43,15 +55,15 @@ function HomestayList() {
       )
     : homestay;
 
+  const handleview = (placeId) => {
+    const placeDetails = homestay.find((place) => place._id === placeId);
+    setSelectedPlace(placeDetails);
+  };
 
-    const handleview = (placeId) => {
-      const placeDetails = homestay.find((place) => place._id === placeId);
-      setSelectedPlace(placeDetails);
-    };
+  const aboutDetails = async (id) => {
+    history.push(`/about/${id}`);
+  };
 
-    const aboutDetails= async(id)=>{
-      history.push(`/about/${id}`)
-    }
   return (
     <div>
       <div className="ltn__product-area ltn__product-gutter mb-100">
@@ -80,10 +92,9 @@ function HomestayList() {
                     <div className="short-by text-center">
                       <select className="nice-select">
                         <option>Default sorting</option>
-                        <option>Sort by popularity</option>
-                        <option>Sort by new arrivals</option>
-                        <option>Sort by price: low to high</option>
-                        <option>Sort by price: high to low</option>
+                        {categories.map((category) => (
+                          <option>{category.name}</option>
+                        ))}
                       </select>
                     </div>
                   </li>
@@ -122,7 +133,7 @@ function HomestayList() {
                         <div className="col-lg-4 col-sm-6 col-12">
                           <div className="ltn__product-item ltn__product-item-4 ltn__product-item-5 text-center---">
                             <div className="product-img">
-                              <a onClick={()=>aboutDetails(place._id)}>
+                              <a onClick={() => aboutDetails(place._id)}>
                                 <img
                                   src={`http://localhost:7000/upload/${place.image[0]}`}
                                   alt="#"
@@ -170,7 +181,7 @@ function HomestayList() {
                                       title="Quick View"
                                       data-bs-toggle="modal"
                                       data-bs-target="#quick_view_modal"
-                                      onClick={()=>handleview(place._id)}
+                                      onClick={() => handleview(place._id)}
                                     >
                                       <i className="flaticon-expand" />
                                     </a>
@@ -201,7 +212,7 @@ function HomestayList() {
                             <div className="product-info-bottom">
                               <div className="product-price">
                                 <span>
-                                ₹{place.price}
+                                  ₹{place.price}
                                   <label>/Day</label>
                                   {/* <p>Booking Now</p> */}
                                 </span>
@@ -222,20 +233,14 @@ function HomestayList() {
                         <i className="fas fa-angle-double-left" />
                       </a>
                     </li>
-                    <li>
+                    <li className="active">
                       <a href="#">1</a>
                     </li>
-                    <li className="active">
+                    <li>
                       <a href="#">2</a>
                     </li>
                     <li>
                       <a href="#">3</a>
-                    </li>
-                    <li>
-                      <a href="#">...</a>
-                    </li>
-                    <li>
-                      <a href="#">10</a>
                     </li>
                     <li>
                       <a href="#">
@@ -317,139 +322,139 @@ function HomestayList() {
         </div>
       </div>
 
-
-{selectedPlace && (
-      <div className="ltn__modal-area ltn__quick-view-modal-area">
-        <div className="modal fade" id="quick_view_modal" tabIndex={-1}>
-          <div className="modal-dialog modal-lg" role="document">
-            <div className="modal-content">
-              <div className="modal-header">
-                <button
-                  type="button"
-                  className="close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                >
-                  <span aria-hidden="true">×</span>
-                  {/* <i class="fas fa-times"></i> */}
-                </button>
-              </div>
-              <div className="modal-body">
-                <div className="ltn__quick-view-modal-inner">
-                  <div className="modal-product-item">
-                    <div className="row">
-                      <div className="col-lg-6 col-12">
-                        <div className="modal-product-img">
-                          <img
- src={`http://localhost:7000/upload/${selectedPlace.image[0]}`}
-                             alt="#"
-                          />
+      {selectedPlace && (
+        <div className="ltn__modal-area ltn__quick-view-modal-area">
+          <div className="modal fade" id="quick_view_modal" tabIndex={-1}>
+            <div className="modal-dialog modal-lg" role="document">
+              <div className="modal-content">
+                <div className="modal-header">
+                  <button
+                    type="button"
+                    className="close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true">×</span>
+                    {/* <i class="fas fa-times"></i> */}
+                  </button>
+                </div>
+                <div className="modal-body">
+                  <div className="ltn__quick-view-modal-inner">
+                    <div className="modal-product-item">
+                      <div className="row">
+                        <div className="col-lg-6 col-12">
+                          <div className="modal-product-img">
+                            <img
+                              src={`http://localhost:7000/upload/${selectedPlace.image[0]}`}
+                              alt="#"
+                            />
+                          </div>
                         </div>
-                      </div>
-                      <div className="col-lg-6 col-12">
-                        <div className="modal-product-info">
-                          <div className="product-ratting">
-                            <ul>
-                              <li>
-                                <a href="#">
-                                  <i className="fas fa-star" />
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  <i className="fas fa-star" />
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  <i className="fas fa-star" />
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  <i className="fas fa-star-half-alt" />
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  <i className="far fa-star" />
-                                </a>
-                              </li>
-                              <li className="review-total">
-                                {" "}
-                                <a href="#"> ( 95 Reviews )</a>
-                              </li>
-                            </ul>
-                          </div>
-                          <h3>{selectedPlace.place}</h3>
-                          <div className="product-price">
-                            <span>₹{selectedPlace.price}</span>
-                            <del>₹165.00</del>
-                          </div>
-                          <div className="modal-product-meta ltn__product-details-menu-1">
-                            <ul>
-                              <li>
-                                <strong>Categories:</strong>
-                                <span className="go-top">
-                                  <Link to="/blog">Parts</Link>
-                                  <Link to="/blog">Car</Link>
-                                  <Link to="/blog">Seat</Link>
-                                  <Link to="/blog">Cover</Link>
-                                </span>
-                              </li>
-                            </ul>
-                          </div>
-                          <div className="ltn__product-details-menu-2">
-                            <ul>
-                              <li>
-                                <div className="cart-plus-minus">
-                                  <input
-                                    type="text"
-                                    defaultValue="02"
-                                    name="qtybutton"
-                                    className="cart-plus-minus-box"
-                                  />
-                                </div>
-                              </li>
-                              <li>
-                                <a
-                                  href="#"
-                                  className="theme-btn-1 btn btn-effect-1"
-                                  title="Add to Cart"
-                                  data-bs-toggle="modal"
-                                  data-bs-target="#add_to_cart_modal"
-                                >
-                                  <i className="fas fa-shopping-cart" />
-                                  <span>ADD TO CART</span>
-                                </a>
-                              </li>
-                            </ul>
-                          </div>
-                          <hr />
-                          <div className="ltn__social-media">
-                            <ul>
-                              <li>Share:</li>
-                              <li>
-                                <a href="#" title="Facebook">
-                                  <i className="fab fa-facebook-f" />
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#" title="Twitter">
-                                  <i className="fab fa-twitter" />
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#" title="Linkedin">
-                                  <i className="fab fa-linkedin" />
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#" title="Instagram">
-                                  <i className="fab fa-instagram" />
-                                </a>
-                              </li>
-                            </ul>
+                        <div className="col-lg-6 col-12">
+                          <div className="modal-product-info">
+                            <div className="product-ratting">
+                              <ul>
+                                <li>
+                                  <a href="#">
+                                    <i className="fas fa-star" />
+                                  </a>
+                                </li>
+                                <li>
+                                  <a href="#">
+                                    <i className="fas fa-star" />
+                                  </a>
+                                </li>
+                                <li>
+                                  <a href="#">
+                                    <i className="fas fa-star" />
+                                  </a>
+                                </li>
+                                <li>
+                                  <a href="#">
+                                    <i className="fas fa-star-half-alt" />
+                                  </a>
+                                </li>
+                                <li>
+                                  <a href="#">
+                                    <i className="far fa-star" />
+                                  </a>
+                                </li>
+                                <li className="review-total">
+                                  {" "}
+                                  <a href="#"> ( 95 Reviews )</a>
+                                </li>
+                              </ul>
+                            </div>
+                            <h3>{selectedPlace.place}</h3>
+                            <div className="product-price">
+                              <span>₹{selectedPlace.price}</span>
+                              <del>₹{selectedPlace.ogprice}</del>
+                            </div>
+                            <div className="modal-product-meta ltn__product-details-menu-1">
+                              <ul>
+                                <li>
+                                  <strong>Categories:</strong>
+                                  <span className="go-top">
+                                    <Link to="/blog">Parts</Link>
+                                    <Link to="/blog">Car</Link>
+                                    <Link to="/blog">Seat</Link>
+                                    <Link to="/blog">Cover</Link>
+                                  </span>
+                                </li>
+                              </ul>
+                            </div>
+                            <div className="ltn__product-details-menu-2">
+                              <ul>
+                                <li>
+                                  <div className="cart-plus-minus">
+                                    <input
+                                      type="text"
+                                      defaultValue="02"
+                                      name="qtybutton"
+                                      className="cart-plus-minus-box"
+                                    />
+                                  </div>
+                                </li>
+                                <li>
+                                  <a
+                                    href="#"
+                                    className="theme-btn-1 btn btn-effect-1"
+                                    title="Add to Cart"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#add_to_cart_modal"
+                                  >
+                                    <i className="fas fa-shopping-cart" />
+                                    <span>ADD TO CART</span>
+                                  </a>
+                                </li>
+                              </ul>
+                            </div>
+                            <hr />
+                            <div className="ltn__social-media">
+                              <ul>
+                                <li>Share:</li>
+                                <li>
+                                  <a href="#" title="Facebook">
+                                    <i className="fab fa-facebook-f" />
+                                  </a>
+                                </li>
+                                <li>
+                                  <a href="#" title="Twitter">
+                                    <i className="fab fa-twitter" />
+                                  </a>
+                                </li>
+                                <li>
+                                  <a href="#" title="Linkedin">
+                                    <i className="fab fa-linkedin" />
+                                  </a>
+                                </li>
+                                <li>
+                                  <a href="#" title="Instagram">
+                                    <i className="fab fa-instagram" />
+                                  </a>
+                                </li>
+                              </ul>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -460,8 +465,7 @@ function HomestayList() {
             </div>
           </div>
         </div>
-      </div>
-)}
+      )}
       <div className="ltn__modal-area ltn__add-to-cart-modal-area">
         <div className="modal fade" id="add_to_cart_modal" tabIndex={-1}>
           <div className="modal-dialog modal-md" role="document">

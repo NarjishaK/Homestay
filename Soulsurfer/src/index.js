@@ -50,6 +50,9 @@ import PlaceCreate from "./components/Admins/place-create";
 import Categorycreate from "./components/Admins/categorycreate";
 import CategoryList from "./components/Admins/categorylist";
 import Categoryedit from "./components/Admins/categoryedit";
+import AdminAccount from "./components/Admins/admin-account";
+import DestinationList from "./components/Admins/destinationlist";
+import Destinationedit from "./components/Admins/destinationedit";
 //
 import UserLists from "./components/Admins/userlist"
 import UserProfile from "./components/Users/userprofile";
@@ -66,6 +69,9 @@ class Root extends Component {
             <Route path="/categorycreate" component={Categorycreate} />
             <Route path="/categorylist" component={CategoryList} />
             <Route path="/categoryedit/:id" component={Categoryedit} />
+            <Route path="/destinationlist" component={DestinationList} />
+            <Route path="/destinationedit/:id" component={Destinationedit} />
+            <Route path="/admins" component={AdminAccount} />
             {/* // */}
             <Route path="/userlists" component={UserLists}/>
             <Route path="/userprofile/:id" component={UserProfile}/>

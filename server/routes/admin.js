@@ -2,7 +2,7 @@ var express = require("express");
 var router = express.Router();
 const Authentication = require("../middleware/authentication");
 const Admincontroller = require("../Controller/admin-controller");
-const UserController = require("../Controller/user-controller");
+const DestinationControll= require("../Controller/destination-controll");
 const multer = require("multer");
 
 const storage = multer.diskStorage({
@@ -32,9 +32,13 @@ router.put("/updatecategory/:id",upload.single("image"),Admincontroller.updateca
 router.delete("/deletecategory/:id",Admincontroller.deletecategory)
 
 //get place details based on category
-router.get("/placedetails/:id",Admincontroller.placedetails)
-//
-// router.post("/userRegistration",upload.single("image"),UserController.userRegistration);
+router.get("/placedetails/:id",Admincontroller.placedetails);
 
+//destination//
+router.post("/destinationcreate",upload.single("image"),DestinationControll.destinationcreate)
+router.get("/destinationlist",DestinationControll.destinationlist)
+router.get("/destinationedit/:id",DestinationControll.destinationedit)
+router.put("/destinationupdate/:id",upload.single("image"),DestinationControll.destinationupdate)
+router.delete("/deletedestination/:id",DestinationControll.deletedestination)
 
 module.exports = router;

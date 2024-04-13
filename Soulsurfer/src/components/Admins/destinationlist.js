@@ -6,19 +6,19 @@ import EditIcon from "@material-ui/icons/Edit";
 import { IconButton } from "@material-ui/core";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
-function CategoryList() {
+function DestinationList() {
   let publicUrl = process.env.PUBLIC_URL + "/";
-  const [category, setCategory] = useState([]);
+  const [destinations, setDestinations] = useState([]);
   const history = useHistory();
 
   useEffect(() => {
-    fetchCategory();
+    fetchDestination();
   }, []);
-  const fetchCategory = async () => {
+  const fetchDestination = async () => {
     const response = await axios
-      .get("http://localhost:7000/admin/categorylist")
+      .get("http://localhost:7000/admin/destinationlist")
       .then((response) => {
-        setCategory(response.data);
+        setDestinations(response.data);
       })
       .catch((err) => {
         console.log(err);
@@ -26,21 +26,24 @@ function CategoryList() {
   };
 
   const handleEdit = (id) => {
-    history.push(`/categoryedit/${id}`);
+    history.push(`/destinationedit/${id}`);
   };
 
-  const handleDelete =async(id)=>{
-    const confirm = window.confirm("Are you sure you want to delete this category")
-    if(confirm){
-    try{
-     const response = await axios.delete(`http://localhost:7000/admin/deletecategory/${id}`)
-     fetchCategory();
-
-    }catch(err){
-      console.log(err);
+  const handleDelete = async (id) => {
+    const confirm = window.confirm(
+      "Are you sure you want to delete this Destination"
+    );
+    if (confirm) {
+      try {
+        const response = await axios.delete(
+          `http://localhost:7000/admin/deletedestination/${id}`
+        );
+        fetchDestination();
+      } catch (err) {
+        console.log(err);
+      }
     }
-  }
-}
+  };
   return (
     <div>
       <div className="ltn__product-area ltn__product-gutter mb-100">
@@ -59,18 +62,18 @@ function CategoryList() {
                         {/* Search Widget */}
                         <div className="ltn__search-widget mb-30">
                           <div className={styles.category}>
-                            <h4>CATOGORY LIST</h4>
+                            <h4>Destination Lists</h4>
                           </div>
                         </div>
                       </div>
                       {/* ltn__product-item */}
-                      {category.map((categories) => (
+                      {destinations.map((places) => (
                         <div className="col-lg-4 col-sm-6 col-12">
                           <div className="ltn__product-item ltn__product-item-4 ltn__product-item-5 text-center---">
                             <div className="product-img">
                               <Link to="/product-details">
                                 <img
-                                  src={`http://localhost:7000/upload/${categories.image}`}
+                                  src={`http://localhost:7000/upload/${places.image}`}
                                   alt="#"
                                 />
                               </Link>
@@ -78,27 +81,31 @@ function CategoryList() {
                             <div className="product-info">
                               <div className="product-badge">
                                 <ul>
-                                  <li>{categories.name}</li>
+                                  <li>{places.destination}</li>
                                 </ul>
+                                <a href={places.loc}>{places.add}</a>
+                                <p style={{ fontStyle: "italic" }}>
+                                  "{places.des}"
+                                </p>
                               </div>
                               <div className="product-hover-action">
                                 <ul>
                                   <li>
-                                    <a
-                                      onClick={() => handleEdit(categories._id)}
-                                    >
+                                    <a onClick={() => handleEdit(places._id)}>
                                       <i className="fas fa-pencil-alt" />
                                     </a>
                                   </li>
                                   <li>
-                                    <a
-                                    onClick={()=>handleDelete(categories._id)}>
+                                    <a onClick={() => handleDelete(places._id)}>
                                       <i className="fa fa-trash"></i>
                                     </a>
                                   </li>
                                   <li>
                                     <span className="go-top">
-                                      <Link to="/admins" title="Product Details">
+                                      <Link
+                                        to="/admins"
+                                        title="Product Details"
+                                      >
                                         <i className="flaticon-add" />
                                       </Link>
                                     </span>
@@ -113,37 +120,6 @@ function CategoryList() {
                   </div>
                 </div>
               </div>
-              {/* <div className="ltn__pagination-area text-center">
-                <div className="ltn__pagination">
-                  <ul>
-                    <li>
-                      <a href="#">
-                        <i className="fas fa-angle-double-left" />
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">1</a>
-                    </li>
-                    <li className="active">
-                      <a href="#">2</a>
-                    </li>
-                    <li>
-                      <a href="#">3</a>
-                    </li>
-                    <li>
-                      <a href="#">...</a>
-                    </li>
-                    <li>
-                      <a href="#">10</a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <i className="fas fa-angle-double-right" />
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div> */}
             </div>
           </div>
         </div>
@@ -152,4 +128,4 @@ function CategoryList() {
   );
 }
 
-export default CategoryList;
+export default DestinationList;

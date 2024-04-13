@@ -11,19 +11,6 @@ function PortfolioV1() {
   const [homestay, setHomestay] = useState([]);
   const { id } = useParams();
 
-  // useEffect(()=>{
-  // fetchDisplay();
-  // },[])
-  // const fetchDisplay = async()=>{
-  // const response = await axios.get("http://localhost:7000/admin/adminpanellist")
-  // .then((response)=>{
-  // setHomestay(response.data)
-  // })
-  // .catch((err)=>{
-  // console.log(err);
-  // })
-  // }
-
   useEffect(() => {
     fetchProductdetails();
   }, [id]);

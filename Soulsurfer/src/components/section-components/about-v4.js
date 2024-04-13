@@ -52,8 +52,7 @@ function AboutV4() {
                 alt="About Us Image"
               />
               <div className="about-us-img-info about-us-img-info-2 about-us-img-info-3">
-                <div className="ltn__video-img ltn__animation-pulse1">
-                </div>
+                <div className="ltn__video-img ltn__animation-pulse1"></div>
               </div>
             </div>
           </div>
@@ -63,12 +62,11 @@ function AboutV4() {
                 <h6 className="section-subtitle section-subtitle-2 ltn__secondary-color">
                   About Us
                 </h6>
-                <h1 className="section-title" >{place}
+                <h1 className="section-title">
+                  {place}
                   <span>.</span>
                 </h1>
-                <p>
-                  {about}
-                </p>
+                <p>{about}</p>
               </div>
               <ul className="ltn__list-item-half clearfix">
                 <li>
@@ -89,9 +87,7 @@ function AboutV4() {
                 </li>
               </ul>
               <div className="ltn__callout bg-overlay-theme-05  mt-30">
-                <p>
-                  "{description}"{" "}
-                </p>
+                <p>"{description}" </p>
               </div>
               <div className="btn-wrapper animated">
                 <Link to="/service" className="theme-btn-1 btn btn-effect-1">
@@ -100,6 +96,34 @@ function AboutV4() {
               </div>
             </div>
           </div>
+        </div>
+        <br />
+
+        <br />
+
+        <div className="row ltn__custom-gutter--- justify-content-center go-top">
+          {image.slice(0).map((img,index) => (
+              <div key={index} className="col-lg-4 col-sm-6 col-12">
+                <div
+                  className={`ltn__feature-item ltn__feature-item-6 text-center bg-white  box-shadow-1 ${
+                    index === 0 ? "active" : ""
+                  }`}
+                >
+                  <div className="ltn__feature-icon">
+                    <img
+                      src={`http://localhost:7000/upload/${img}`} // Use `img` here which is each image from the array
+                      alt="homestay images"
+                    />
+                  </div>
+                  <div className="ltn__feature-info">
+                    {/* <Link className="ltn__service-btn" to="/service-details">
+                      Learn More <i className="flaticon-right-arrow" />
+                    </Link> */}
+                  </div>
+                </div>
+              </div>
+            )
+          )}
         </div>
       </div>
     </div>
