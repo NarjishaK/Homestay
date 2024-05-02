@@ -214,3 +214,20 @@ exports.placedetails=asyncHandler(async(req,res)=>{
     return res.status(500).json({err:"An error occured "})
   }
 })
+
+// const fetchProducts = async () => {
+//   const token = localStorage.getItem("token");
+//   axios.defaults.headers.common["Authorization"] = token;
+//   axios
+//     .get("http://localhost:8000/product/listproduct")
+//     .then((response) => {
+//       setSimilarProducts(response.data);
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//     });
+// };
+// const relatedProducts = similarproducts.filter(
+//   (similar) => similar.category === selectedProductCategory
+// );
+// const relatedProductsToDisplay = relatedProducts.slice(0, 4);

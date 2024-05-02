@@ -3,15 +3,16 @@ import { Link } from "react-router-dom";
 import parse from "html-react-parser";
 import axios from "axios";
 import styles from "../shop-components/shop.module.css";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom.min";
 
 function HomestayList() {
   let publicUrl = process.env.PUBLIC_URL + "/";
   const [homestay, setHomestay] = useState([]);
   const [categories, setCategories] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedPlace, setSelectedPlace] = useState(null);
+  const [selectedPlace, setSelectedPlace] = useState("");
   const history = useHistory();
+  const {id} =useParams("")
 
   useEffect(() => {
     fetchHomestay();
@@ -55,8 +56,8 @@ function HomestayList() {
       )
     : homestay;
 
-  const handleview = (placeId) => {
-    const placeDetails = homestay.find((place) => place._id === placeId);
+  const handleview = (id) => {
+    const placeDetails = homestay.find((place) => place._id === id);
     setSelectedPlace(placeDetails);
   };
 
@@ -269,6 +270,7 @@ function HomestayList() {
                   <span aria-hidden="true">×</span>
                 </button>
               </div>
+              {selectedPlace && (
               <div className="modal-body">
                 <div className="ltn__quick-view-modal-inner">
                   <div className="modal-product-item">
@@ -276,7 +278,7 @@ function HomestayList() {
                       <div className="col-12">
                         <div className="modal-product-img">
                           <img
-                            src={publicUrl + "assets/img/product/7.png"}
+                            src={`http://localhost:7000/upload/${selectedPlace.image[0]}`}
                             alt="#"
                           />
                         </div>
@@ -300,7 +302,7 @@ function HomestayList() {
                           </div>
                         </div>
                         {/* additional-info */}
-                        <div className="additional-info d-none">
+                        {/* <div className="additional-info d-none">
                           <p>
                             We want to give you <b>10% discount</b> for your
                             first order, <br /> Use discount code at checkout
@@ -311,12 +313,13 @@ function HomestayList() {
                               alt="#"
                             />
                           </div>
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
+              )}
             </div>
           </div>
         </div>
@@ -466,7 +469,8 @@ function HomestayList() {
           </div>
         </div>
       )}
-      <div className="ltn__modal-area ltn__add-to-cart-modal-area">
+
+      {/* <div className="ltn__modal-area ltn__add-to-cart-modal-area">
         <div className="modal fade" id="add_to_cart_modal" tabIndex={-1}>
           <div className="modal-dialog modal-md" role="document">
             <div className="modal-content">
@@ -516,7 +520,6 @@ function HomestayList() {
                             </Link>
                           </div>
                         </div>
-                        {/* additional-info */}
                         <div className="additional-info d-none">
                           <p>
                             We want to give you <b>10% discount</b> for your
@@ -537,7 +540,8 @@ function HomestayList() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
+
     </div>
   );
 }

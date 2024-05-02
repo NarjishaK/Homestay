@@ -17,8 +17,8 @@ class ContactInfo extends Component {
 						<img src={publicUrl+"assets/img/icons/10.png"} alt="Icon Image" />
 						</div>
 						<h3>Email Address</h3>
-						<p>info@webmail.com <br />
-						jobs@webexample.com</p>
+						<p>info@surftogo.com<br />
+						contact@surftogo.com</p>
 					</div>
 					</div>
 					<div className="col-lg-4">
@@ -27,7 +27,7 @@ class ContactInfo extends Component {
 						<img src={publicUrl+"assets/img/icons/11.png"} alt="Icon Image" />
 						</div>
 						<h3>Phone Number</h3>
-						<p>+0123-456789 <br /> +987-6543210</p>
+						<p>+91 80894 32334 <br /> +91 81297 43535</p>
 					</div>
 					</div>
 					<div className="col-lg-4">
@@ -36,8 +36,8 @@ class ContactInfo extends Component {
 						<img src={publicUrl+"assets/img/icons/12.png"} alt="Icon Image" />
 						</div>
 						<h3>Office Address</h3>
-						<p>18/A, New Born Town Hall <br />
-						New York, US</p>
+						<p> Pantheerankavu,Kozhikode <br />
+						Kerala-673019</p>
 					</div>
 					</div>
 				</div>

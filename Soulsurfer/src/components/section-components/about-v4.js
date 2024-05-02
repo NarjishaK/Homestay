@@ -1,7 +1,7 @@
 import React, { Component, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import parse from "html-react-parser";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom.min";
 import axios from "axios";
 
 function AboutV4() {
@@ -14,7 +14,9 @@ function AboutV4() {
   const [location, setLocation] = useState("");
   const [about, setAbout] = useState("");
   const [room, setRoom] = useState("");
+  const [ogprice, setOgprice] = useState("");
   const { id } = useParams();
+  const history =useHistory("")
 
   useEffect(() => {
     const fetchPlaces = async () => {
@@ -25,6 +27,7 @@ function AboutV4() {
         const places = response.data;
         setDescription(places.description);
         setPrice(places.price);
+        setOgprice(places.ogprice);
         setAbout(places.about);
         setPlace(places.place);
         setStatus(places.status);
@@ -38,6 +41,10 @@ function AboutV4() {
     };
     fetchPlaces();
   }, [id]);
+
+  const handleBooking = async(id)=>{
+    history.push(`/blog/${id}`)
+  }
 
   let publicUrl = process.env.PUBLIC_URL + "/";
 
@@ -86,11 +93,14 @@ function AboutV4() {
                   Complete 24/7 Security
                 </li>
               </ul>
+              <div>
+                <p>₹.{price} {ogprice}</p>
+              </div>
               <div className="ltn__callout bg-overlay-theme-05  mt-30">
                 <p>"{description}" </p>
               </div>
-              <div className="btn-wrapper animated">
-                <Link to="/service" className="theme-btn-1 btn btn-effect-1">
+              <div className="btn-wrapper animated" onClick={()=>handleBooking(place._id)}>
+                <Link to="" className="theme-btn-1 btn btn-effect-1">
                   BOOKING
                 </Link>
               </div>
@@ -116,9 +126,6 @@ function AboutV4() {
                     />
                   </div>
                   <div className="ltn__feature-info">
-                    {/* <Link className="ltn__service-btn" to="/service-details">
-                      Learn More <i className="flaticon-right-arrow" />
-                    </Link> */}
                   </div>
                 </div>
               </div>
