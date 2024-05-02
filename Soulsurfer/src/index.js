@@ -98,7 +98,7 @@ class Root extends Component {
             <Route path="/blog-grid" component={BlogGrid} />
             <Route path="/blog-left-sidebar" component={BlogLeftSidebar} />
             <Route path="/blog-right-sidebar" component={BlogRightSidebar} />
-            <Route path="/blog" component={Blog} />
+            <Route path="/blog/:id" component={Blog} />
 
             <Route path="/blog-details" component={BlogDetails} />
             <Route path="/contact" component={Contact} />

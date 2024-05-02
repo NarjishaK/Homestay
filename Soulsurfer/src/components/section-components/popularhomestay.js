@@ -1,10 +1,47 @@
-import React, { Component } from "react";
+import React, { Component, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import parse from "html-react-parser";
+import axios from "axios";
 
 function PopularHomestay() {
   let publicUrl = process.env.PUBLIC_URL + "/";
   let imagealt = "image";
+  const[similarplace,setSimilarplace] =useState([]);
+  const [selectedPlaceCategory, setSelectedPlaceCategory] = useState("");
+
+  
+  useEffect(()=>{
+    fetchSimilarplace()
+  },[])
+
+  const fetchSimilarplace = async()=>{
+    axios.get("http://localhost:7000/admin/adminpanellist")
+    .then((response)=>{
+      setSimilarplace(response.data)
+    })
+    .catch((err)=>{
+      console.log(err);
+    });
+  }
+  const relatedPlace =similarplace.filter((similar)=>similar.place===selectedPlaceCategory);
+  const relatedPlaceToDisplay = relatedPlace.slice(0, 4);
+
+  // const fetchProducts = async () => {
+  //   const token = localStorage.getItem("token");
+  //   axios.defaults.headers.common["Authorization"] = token;
+  //   axios
+  //     .get("http://localhost:8000/product/listproduct")
+  //     .then((response) => {
+  //       setSimilarProducts(response.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
+  // const relatedProducts = similarproducts.filter(
+  //   (similar) => similar.category === selectedProductCategory
+  // );
+  // const relatedProductsToDisplay = relatedProducts.slice(0, 4);
 
   return (
     <div className="ltn__team-area pt-115 pb-90 go-top">
@@ -15,19 +52,20 @@ function PopularHomestay() {
               <h6 className="section-subtitle section-subtitle-2 ltn__secondary-color">
                 Team
               </h6>
-              <h1 className="section-title">Popular Homestays</h1>
+              <h1 className="section-title">Similar Places</h1>
             </div>
           </div>
         </div>
         <div className="row justify-content-center">
+          {relatedPlaceToDisplay.map((similar)=>(
           <div className="col-lg-4 col-sm-6">
             <div className="ltn__team-item ltn__team-item-3---">
               <div className="team-img">
-                <img src={publicUrl + "assets/img/team/4.jpg"} alt="Image" />
+                <img src={`http://localhost:7000/upload/${similar.image}`} alt="Image" />
               </div>
               <div className="team-info">
                 <h4>
-                  <Link to="/team-details">Rosalina D. Willliam</Link>
+                  <Link to="/team-details">{similar.place}</Link>
                 </h4>
                 <h6 className="ltn__secondary-color">Real Estate Broker</h6>
                 <div className="ltn__social-media">
@@ -52,7 +90,8 @@ function PopularHomestay() {
               </div>
             </div>
           </div>
-          <div className="col-lg-4 col-sm-6">
+          ))}
+          {/* <div className="col-lg-4 col-sm-6">
             <div className="ltn__team-item ltn__team-item-3---">
               <div className="team-img">
                 <img src={publicUrl + "assets/img/team/2.jpg"} alt="Image" />
@@ -83,8 +122,8 @@ function PopularHomestay() {
                 </div>
               </div>
             </div>
-          </div>
-          <div className="col-lg-4 col-sm-6">
+          </div> */}
+          {/* <div className="col-lg-4 col-sm-6">
             <div className="ltn__team-item ltn__team-item-3---">
               <div className="team-img">
                 <img src={publicUrl + "assets/img/team/5.jpg"} alt="Image" />
@@ -115,7 +154,7 @@ function PopularHomestay() {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

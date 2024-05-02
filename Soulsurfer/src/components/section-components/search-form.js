@@ -1,7 +1,7 @@
 import React, { Component, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 // import parse from 'html-react-parser';
-import styles from "./home.style.css";
+import styles from "../section-components/category.module.css";
 import axios from "axios";
 function SearchForm() {
   const [category, setCategory] = useState([]);

@@ -18094,3 +18094,54 @@ input.cart-plus-minus-box {
 ---------------------------------------------------- */
 
 /*# sourceMappingURL=style.css.map */
+@media (max-width: 767px) {
+  .card {
+    width: 100%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .card {
+    width: 100%;
+  }
+}
+
+/* @media (min-width: 992px) {
+  .card {
+    width: 33.3333%;
+  }
+} */
+
+.card-img-top {
+  width: 100%;
+  height: auto; /* Responsive image */
+}
+
+.card-title {
+  cursor: pointer;
+}
+/* ///// */
+/* CSS for horizontal scrolling */
+.ltn__img-slider-area {
+  overflow-x: auto; /* Allows horizontal scrolling */
+  white-space: nowrap; /* Keeps all items in a single line */
+}
+
+.ltn__img-slide-item-4 {
+  display: inline-block; /* Inline-block so they can sit side by side */
+  margin-right: 10px; /* Adds spacing between items */
+  vertical-align: top; /* Aligns items to the top */
+}
+
+img {
+  width: 100%; /* Responsive images */
+  height: auto; /* Maintain aspect ratio */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .ltn__img-slide-item-4 {
+    width: 90%; /* Smaller width on mobile to show partial next item */
+  }
+}
+

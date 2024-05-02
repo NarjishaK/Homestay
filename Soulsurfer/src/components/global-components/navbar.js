@@ -109,7 +109,7 @@ class Navbar extends Component {
 									<li><Link to="/register">Register</Link></li>
 								</ul>
 							</li>
-							{/* <li className="menu-icon"><Link to="/blog-grid">News</Link>
+							<li className="menu-icon"><Link to="/blog-grid">News</Link>
 								<ul>
 									<li><Link to="/blog">News</Link></li>
 									<li><Link to="/blog-grid">News Grid</Link></li>
@@ -117,7 +117,7 @@ class Navbar extends Component {
 									<li><Link to="/blog-right-sidebar">News Right sidebar</Link></li>
 									<li><Link to="/blog-details">News details</Link></li>
 								</ul>
-							</li> */}
+							</li>
 							{/* <li className="menu-icon"><Link to="#">Pages</Link>
 								<ul className="mega-menu">
 									<li><a href="#">Inner Pages</a>
